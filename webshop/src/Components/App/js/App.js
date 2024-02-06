@@ -1,9 +1,9 @@
-
-import './App.css';
+import Menu from '../../Menu/js/menu';
+import '../css/App.css';
 
 function App() {
   return (
-    <div>Hello</div>
+    Menu()
   );
 }
 
