@@ -28,15 +28,15 @@ function Items({selectedCategory}){
     }
 
     return(
-        <div className=''>
+        <div className='items'>
             {products.length > 0 ? (
                 products.map((item, index) => (
                     <div className="horizontal" >
                         <div><img src="https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg" alt="product"/></div>
-                        <div key={index} className="vertical">
-                            <div>{item.nev}</div>
-                            <div>{item.Ar}</div>
-                            <div>{item.Mennyiseg >0 ?(<div>Raktáron({item.Mennyiseg})</div>):(<div>Elfogyott</div>)}</div>
+                        <div key={index} className="vertical productmenu">
+                            <div className='product'>{item.nev}</div>
+                            <div>{item.Ar} Ft</div>
+                            <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
                             <div><button>Kosárba</button></div>
                         </div>
                     </div>
