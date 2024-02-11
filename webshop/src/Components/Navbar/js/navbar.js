@@ -4,16 +4,15 @@ import { getDatabase, ref, get } from "firebase/database";
 import "../css/navbar.css"
 
 
- function Navbar(){
+ function Navbar({handleSelectCategory}){
 
-
+    const [allItems, setAllItems] = useState([]);
+    
     useEffect(()=>{
         fetchData()
         console.log(allItems)
     },[])
     
-    const [allItems, setAllItems] = useState([]);
-
     const fetchData = async () => {
     const db = getDatabase(app);
     const dbRef = ref(db, "Kategoriak");
@@ -32,7 +31,7 @@ import "../css/navbar.css"
     return(
         <div className="horizontal flex background">
             {allItems.map((item,index)=>(
-            <div className='navbar' key={index}>{item}</div>
+            <div className='navbar' key={index} onClick={() => handleSelectCategory(item)}>{item}</div>
             ))}
 
         </div>
