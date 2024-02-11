@@ -3,3 +3,4 @@ function Navbar(){
         <div className="horizontal"></div>
     )
 }
+export default Navbar

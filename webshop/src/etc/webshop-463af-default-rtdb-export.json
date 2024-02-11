@@ -1,0 +1,30 @@
+{
+  "Kategoriak": {
+    "Kategoria3": {
+      "Termek5": {
+        "Ar": 600,
+        "Mennyiség": 100
+      }
+    },
+    "Kategoria1": {
+      "Termek1": {
+        "Mennyiseg": 5,
+        "Ar": 1000
+      },
+      "Termek2": {
+        "Mennyiseg": 10,
+        "Ar": 1500
+      }
+    },
+    "Kategoria2": {
+      "Termek3": {
+        "Mennyiseg": 15,
+        "Ar": 2500
+      },
+      "Termek4": {
+        "Mennyiseg": 10,
+        "Ar": 2000
+      }
+    }
+  }
+}
