@@ -24,25 +24,25 @@ function Items({selectedCategory,login}){
         if (snapshot.exists()) {
             setProducts(Object.values(snapshot.val()));
         } else {
-            console.log("error");
+            console.log("error.message");
         }
     }
 
     function addItem(){
-        return <Maintenance selectedCategory={selectedCategory}/>
+        return <Maintenance selectedCategory={selectedCategory} />
     }
 
-    const [adding, setAdding]=useState(false)
+    
 
 
 
     return(
         <div className='items productmenu'>
             {console.log(login)}
-            {login && !adding &&(
+            {login && (
                 
                 <div>
-            <Maintenance selectedCategory={selectedCategory}/>
+            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData}/>
                 </div>
             )}
             {console.log(products)}

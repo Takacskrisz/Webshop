@@ -5,7 +5,7 @@ import "../css/maintenance.css"
 
 
 
-function Maintenance({selectedCategory}){
+function Maintenance({selectedCategory,fetchData}){
 
     const [nev,setNev]=useState();
     const [ar,setAr]=useState();
@@ -26,6 +26,7 @@ function Maintenance({selectedCategory}){
         await set(ref(db, `Kategoriak/${selectedCategory}/${nev}`),newItemData);
     
           alert("Sikeres mentés")
+        fetchData(selectedCategory)
        }catch(error) {
           alert("Hiba " + error.message);
        }

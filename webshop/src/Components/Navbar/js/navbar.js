@@ -39,6 +39,7 @@ import "../css/navbar.css"
     await set(ref(db, `Kategoriak/${newCategory}`),newCategoryData);
 
       alert("Sikeres mentés")
+      fetchData()
    }catch(error) {
       alert("Hiba " + error.message);
    }
