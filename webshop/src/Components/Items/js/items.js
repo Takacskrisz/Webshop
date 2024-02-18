@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import app from "../../../firebaseConfig";
 import { getDatabase, ref, get } from "firebase/database";
 import "../css/items.css"
+import Maintenance from '../../Maintenance/js/Maintenace';
 
 
 
-function Items({selectedCategory}){
+function Items({selectedCategory,login}){
 
     const [products, setProducts] = useState([]);
 
@@ -27,20 +28,37 @@ function Items({selectedCategory}){
         }
     }
 
+    function addItem(){
+        return <Maintenance selectedCategory={selectedCategory}/>
+    }
+
+    const [adding, setAdding]=useState(false)
+
+
+
     return(
         <div className='items'>
+            {console.log(login)}
+            {login && !adding &&(
+                
+                <div>
+                <button onClick={addItem}>Hozzáad</button>
+                </div>
+            )}
+            
             {products.length > 0 ? (
                 products.map((item, index) => (
+                item.nev && item.Ar && item.Mennyiseg?(
                     <div className="horizontal" >
                         <div><img src="https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg" alt="product"/></div>
                         <div key={index} className="vertical productmenu">
                             <div className='product'>{item.nev}</div>
                             <div>{item.Ar} Ft</div>
                             <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
-                            <div><button>Kosárba</button></div>
+                            <div><button className='cartbutton'>Kosárba</button></div>
                         </div>
                     </div>
-                ))
+                ):null))
             ) : (
                 <p>Nincs elérhető árú</p>
             )}

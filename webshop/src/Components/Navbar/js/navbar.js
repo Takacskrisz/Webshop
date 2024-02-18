@@ -56,7 +56,7 @@ import "../css/navbar.css"
             <div className='navbar' key={index} onClick={() => handleSelectCategory(item)}>{item}</div>
             ))}
 
-        {login ? (
+        {login && (
              <div className='horizontal ' > 
                 <div > 
                     <input type='text' value={newCategory} onChange={(e)=>{
@@ -65,9 +65,9 @@ import "../css/navbar.css"
                     }}/>
                 </div>
                 <div className='newcategory'> 
-                    <button title='Hozzáad' onClick={saveData}>+</button>
+                    <button className='newcategory' title='Hozzáad' onClick={saveData}>+</button>
                 </div>
-            </div>): false}
+            </div>)}
         </div>
            
     )

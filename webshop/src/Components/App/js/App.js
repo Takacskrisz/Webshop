@@ -20,10 +20,10 @@ function App() {
   }
   return (
     <div>
-    <Menu handleLogin={handleLogin}/>
+    <Menu handleLogin={handleLogin} login={login}/>
     {Header()}
     <Navbar handleSelectCategory={handleSelectCategory} login={login}/>
-    <Items selectedCategory={selectedCategory} />
+    <Items selectedCategory={selectedCategory} login={login} />
     <div>
       
     </div>
