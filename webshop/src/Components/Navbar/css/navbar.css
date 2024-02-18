@@ -13,3 +13,8 @@
 .navbar:hover{
     background-color: lightblue;
 }
+
+.newcategory{
+
+  cursor: pointer;
+}

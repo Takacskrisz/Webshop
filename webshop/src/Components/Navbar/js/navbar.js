@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import app from "../../../firebaseConfig";
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, set, push } from "firebase/database";
 import "../css/navbar.css"
 
 
- function Navbar({handleSelectCategory}){
+ function Navbar({handleSelectCategory,login}){
 
     const [allItems, setAllItems] = useState([]);
+    let [newCategory, setNewCategory]= useState("Hozzáad");
     
     useEffect(()=>{
         fetchData()
@@ -27,14 +28,48 @@ import "../css/navbar.css"
       console.log("error");
     }
   }
-  
+
+  const saveData = async () => {
+    const db = getDatabase(app);
+    try{
+    const categoryRef = push(ref(db, "Kategoriak"));
+
+    const newCategoryId=categoryRef.key;
+
+    const newCategoryData={
+    ['item']:true
+    }
+
+    await set(ref(db, `Kategoriak/${newCategory}`),newCategoryData);
+
+      alert("Sikeres mentés")
+   }catch(error) {
+      alert("Hiba " + error.message);
+   }
+  }
+
+
+
     return(
         <div className="horizontal flex background">
             {allItems.map((item,index)=>(
             <div className='navbar' key={index} onClick={() => handleSelectCategory(item)}>{item}</div>
             ))}
 
+        {login ? (
+             <div className='horizontal ' > 
+                <div > 
+                    <input type='text' value={newCategory} onChange={(e)=>{
+                    setNewCategory(e.target.value)
+                    console.log(newCategory)              
+                    }}/>
+                </div>
+                <div className='newcategory'> 
+                    <button title='Hozzáad' onClick={saveData}>+</button>
+                </div>
+            </div>): false}
         </div>
+           
     )
 }
 export default Navbar

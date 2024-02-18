@@ -12,11 +12,17 @@ function App() {
   const handleSelectCategory = (category) => {
       setSelectedCategory(category);
   }
+
+  const [login,setLogin]=useState(false);
+
+  const handleLogin=(loggedin)=>{
+    setLogin(loggedin)
+  }
   return (
     <div>
-    {Menu()}
+    <Menu handleLogin={handleLogin}/>
     {Header()}
-    <Navbar handleSelectCategory={handleSelectCategory}/>
+    <Navbar handleSelectCategory={handleSelectCategory} login={login}/>
     <Items selectedCategory={selectedCategory} />
     <div>
       
