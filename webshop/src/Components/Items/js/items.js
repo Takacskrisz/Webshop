@@ -60,7 +60,7 @@ function Items({selectedCategory,login}){
                     </div>
                 ):null))
             ) : (
-                <p>Nincs elérhető árú</p>
+                <p>Válasszon kategóriát</p>
             )}
         </div>
         
