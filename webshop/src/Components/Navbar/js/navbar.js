@@ -32,10 +32,6 @@ import "../css/navbar.css"
   const saveData = async () => {
     const db = getDatabase(app);
     try{
-    const categoryRef = push(ref(db, "Kategoriak"));
-
-    const newCategoryId=categoryRef.key;
-
     const newCategoryData={
     ['item']:true
     }

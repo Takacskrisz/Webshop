@@ -37,18 +37,18 @@ function Items({selectedCategory,login}){
 
 
     return(
-        <div className='items'>
+        <div className='items productmenu'>
             {console.log(login)}
             {login && !adding &&(
                 
                 <div>
-                <button onClick={addItem}>Hozzáad</button>
+            <Maintenance selectedCategory={selectedCategory}/>
                 </div>
             )}
-            
+            {console.log(products)}
             {products.length > 0 ? (
                 products.map((item, index) => (
-                item.nev && item.Ar && item.Mennyiseg?(
+                item.nev && item.Ar && item.Mennyiseg!=null?(
                     <div className="horizontal" >
                         <div><img src="https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg" alt="product"/></div>
                         <div key={index} className="vertical productmenu">
