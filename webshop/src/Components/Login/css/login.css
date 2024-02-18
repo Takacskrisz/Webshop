@@ -1,0 +1,19 @@
+.uid{
+margin-bottom: 5px;
+
+}
+.pass{
+margin-left: 64px;
+}
+
+.loginbutton{
+    margin-left: 184px;
+    margin-top: 10px;
+    color:white;
+    background-color: grey;
+    opacity: 1;
+}
+.loginwindow{
+    margin-top:10px;
+    cursor: pointer;
+}

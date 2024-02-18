@@ -34,6 +34,7 @@ function Maintenance({selectedCategory,fetchData}){
     return(
         <div >                      
             <div className="vertical ">
+                <div>Kategória: {selectedCategory}</div>
                 <div>Termék Név: <input onChange={(e)=>(setNev(e.target.value))}/></div>
                 <div>Termék Ár: <input type='number' onChange={(e)=>(setAr(e.target.value))}/></div>
                 <div>Termék Mennyiség: <input type='number' onChange={(e)=>(setMennyiseg(e.target.value))}/></div>                

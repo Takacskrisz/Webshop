@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "../css/login.css"
 
 function Login({handleLogin, toggleLoginWindow}){
 
@@ -20,10 +21,10 @@ function Login({handleLogin, toggleLoginWindow}){
     }
     return(
 
-        <div className="vertical">
-            <div>Felhasználónév: <input onChange={(e)=>setUserId(e.target.value)}/></div>
-            <div>Jelszó:<input type="password" onChange={(e)=>setUserPwd(e.target.value)}/></div>
-            <div><button onClick={loginAttempt}>Bejelentkezés</button></div>
+        <div className="vertical loginwindow">
+            <div>Felhasználónév: <input className='uid' onChange={(e)=>setUserId(e.target.value)}/></div>
+            <div>Jelszó:<input className='pass' type="password" onChange={(e)=>setUserPwd(e.target.value)}/></div>
+            <div><button className='loginbutton' onClick={loginAttempt}>Bejelentkezés</button></div>
 
         </div>
     )

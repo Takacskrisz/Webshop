@@ -8,7 +8,10 @@ function Menu({handleLogin, login}){
 
     const toggleLoginWindow=()=>{
         setLoginWindowToggle(!loginWindowToggle)
-        if(login)handleLogin(false)
+        if(login){
+            handleLogin(false)
+            setLoginWindowToggle(false)
+        }
     }
 
     return (
