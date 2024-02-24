@@ -9,13 +9,22 @@ import Maintenance from '../../Maintenance/js/Maintenace';
 function Items({selectedCategory,login}){
 
     const [products, setProducts] = useState([]);
+    const [editItem, setEditItem]=useState(false);
+    const [selectedItem, setSelectedItem]=useState()
 
+    const handleEditItem=(editing)=>{
+        setEditItem(editing)
+    }
     useEffect(() => {
         if (selectedCategory) {
             fetchData(selectedCategory);
         }
     }, [selectedCategory]);
+   
 
+    useEffect(()=>{
+        console.log(editItem)
+    },[])
     const fetchData = async (category) => {
         const db = getDatabase(app);
         const dbRef = ref(db, `Kategoriak/${category}`);
@@ -28,28 +37,26 @@ function Items({selectedCategory,login}){
         }
     }
 
-        async function removeItem(id,selectedCategory){
-            const db = getDatabase(app);
-            const dbRef = ref(db, `Kategoriak/${selectedCategory}/${products[id].nev}`)
-            await remove(dbRef)
-            await fetchData(selectedCategory);
-        }
-
-    
-
-
+    async function removeItem(id,selectedCategory){
+        const db = getDatabase(app);
+        const dbRef = ref(db, `Kategoriak/${selectedCategory}/${products[id].nev}`)
+        await remove(dbRef)
+        await fetchData(selectedCategory);
+    }
 
     return(
         <div className='items productmenu' >
             {console.log(login)}
-            {login && (
+            {login && !editItem && (
                 
                 <div>
-            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData}/>
+                    <p>Hozzáad</p>
+            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} product={[]} handleEditItem={handleEditItem} editItem={editItem}/>
                 </div>
             )}
             {console.log(products)}
-            {products.length > 0 ? (
+            {!editItem && (
+            products.length > 0 ? (
                 products.map((item, index) => (
                 item.nev && item.Ar && item.Mennyiseg!=null?(
                     <div className="horizontal" >
@@ -60,10 +67,12 @@ function Items({selectedCategory,login}){
                             <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
                             <div><button className='cartbutton'>Kosárba</button></div>
                         </div>
-                        {login && (
+                        {login && !editItem &&(
                 
                             <div className='vertical maintenancemenu '>
-                                <div><button className='maintenancebuttons' title='Szerkesztés'> Szerkesztés</button></div>
+                                <div><button id={index} className='maintenancebuttons' title='Szerkesztés' onClick={(e)=>{
+                                    handleEditItem(true)
+                                    setSelectedItem(e.target.id)}}> Szerkesztés</button></div>
                                 <div><button id={index} className='maintenancebuttons' title='Törlés' onClick={(e)=>{
                                     if(window.confirm(`Biztosan törölni szeretnéd a ${products[e.target.id].nev} terméket?`)){
                                     removeItem(e.target.id,selectedCategory)}
@@ -74,6 +83,13 @@ function Items({selectedCategory,login}){
                 ):null))
             ) : (
                 <p>Válasszon kategóriát</p>
+            ))}
+            {editItem && (
+            <div>
+                <p>Szerkesztés</p>
+                <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} product={products[selectedItem]} handleEditItem={handleEditItem} editItem={editItem}/>
+            </div>
+            
             )}
         </div>
         

@@ -5,13 +5,19 @@ import "../css/maintenance.css"
 
 
 
-function Maintenance({selectedCategory,fetchData}){
+function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem}){
 
-    const [nev,setNev]=useState();
-    const [ar,setAr]=useState();
-    const [mennyiseg,setMennyiseg]=useState();
+    const [nev,setNev]=useState("");
+    const [ar,setAr]=useState("");
+    const [mennyiseg,setMennyiseg]=useState("");
 
-
+    useEffect(() => {
+        if (product) {
+            setNev(product.nev || "");
+            setAr(parseInt(product.Ar) || "");
+            setMennyiseg(product.Mennyiseg || "");
+        }
+    }, [product]);
     const saveData = async () => {
 
         
@@ -27,18 +33,27 @@ function Maintenance({selectedCategory,fetchData}){
     
           alert("Sikeres mentés")
         fetchData(selectedCategory)
+        handleEditItem(false)
        }catch(error) {
           alert("Hiba " + error.message);
        }
       }
     return(
-        <div >                      
-            <div className="vertical ">
+        <div  >                      
+            <div className="vertical main " >
                 <div>Kategória: {selectedCategory}</div>
-                <div>Termék Név: <input onChange={(e)=>(setNev(e.target.value))}/></div>
-                <div>Termék Ár: <input type='number' onChange={(e)=>(setAr(e.target.value))}/></div>
-                <div>Termék Mennyiség: <input type='number' onChange={(e)=>(setMennyiseg(e.target.value))}/></div>                
-                <div><button onClick={saveData}>Hozzáad</button></div>
+                <div><label>Termék Név:</label> <input onChange={(e)=>(setNev(e.target.value))} value={nev}/></div>
+                <div><label>Termék Ár:</label> <input type='number' onChange={(e)=>(setAr(e.target.value))} value={ar}/></div>
+                <div><label>Termék Mennyiség:</label> <input type='number' onChange={(e)=>(setMennyiseg(e.target.value))} value={mennyiseg}/></div>                
+                <div><button onClick={saveData}>Mentés</button></div>
+                {editItem && (
+                    <div>
+                        <button onClick={()=>{
+                            handleEditItem(false)
+                            
+                            }}>Mégsem</button>
+                    </div>
+                )}
             </div>
         </div>
     )
