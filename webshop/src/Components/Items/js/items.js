@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import app from "../../../firebaseConfig";
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, remove } from "firebase/database";
 import "../css/items.css"
 import Maintenance from '../../Maintenance/js/Maintenace';
 
@@ -28,16 +28,19 @@ function Items({selectedCategory,login}){
         }
     }
 
-    function addItem(){
-        return <Maintenance selectedCategory={selectedCategory} />
-    }
+        async function removeItem(id,selectedCategory){
+            const db = getDatabase(app);
+            const dbRef = ref(db, `Kategoriak/${selectedCategory}/${products[id].nev}`)
+            await remove(dbRef)
+            await fetchData(selectedCategory);
+        }
 
     
 
 
 
     return(
-        <div className='items productmenu' style={{backgroundImage:"../img/bg.jpg"}}>
+        <div className='items productmenu' >
             {console.log(login)}
             {login && (
                 
@@ -57,6 +60,16 @@ function Items({selectedCategory,login}){
                             <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
                             <div><button className='cartbutton'>Kosárba</button></div>
                         </div>
+                        {login && (
+                
+                            <div className='vertical maintenancemenu '>
+                                <div><button className='maintenancebuttons' title='Szerkesztés'> Szerkesztés</button></div>
+                                <div><button id={index} className='maintenancebuttons' title='Törlés' onClick={(e)=>{
+                                    if(window.confirm(`Biztosan törölni szeretnéd a ${products[e.target.id].nev} terméket?`)){
+                                    removeItem(e.target.id,selectedCategory)}
+                                }}>Törlés</button></div>
+                            </div>
+                        )}
                     </div>
                 ):null))
             ) : (
