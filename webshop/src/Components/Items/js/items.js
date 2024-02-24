@@ -37,7 +37,7 @@ function Items({selectedCategory,login}){
 
 
     return(
-        <div className='items productmenu'>
+        <div className='items productmenu' style={{backgroundImage:"../img/bg.jpg"}}>
             {console.log(login)}
             {login && (
                 
