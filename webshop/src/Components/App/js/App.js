@@ -20,16 +20,12 @@ function App() {
     setLogin(loggedin)
   }
   return (
-    <div>
+    <div  style={{background: `url(${Background})`}}>
     <Menu handleLogin={handleLogin} login={login}/>
     {Header()}
     <Navbar handleSelectCategory={handleSelectCategory} login={login}/>
-    <div style={{background: `url(${Background})`}}>
-    <Items selectedCategory={selectedCategory} login={login} />
-    </div>
-    
     <div>
-      
+    <Items selectedCategory={selectedCategory} login={login} />
     </div>
     </div>
   );
