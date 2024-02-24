@@ -4,6 +4,7 @@ import Menu from '../../Menu/js/menu';
 import Header from '../../Header/js/Header';
 import Items from '../../Items/js/items';
 import '../css/App.css';
+import Background from '../../Items/img/bg.jpg';
 
 
 function App() {
@@ -23,7 +24,10 @@ function App() {
     <Menu handleLogin={handleLogin} login={login}/>
     {Header()}
     <Navbar handleSelectCategory={handleSelectCategory} login={login}/>
+    <div style={{background: `url(${Background})`}}>
     <Items selectedCategory={selectedCategory} login={login} />
+    </div>
+    
     <div>
       
     </div>

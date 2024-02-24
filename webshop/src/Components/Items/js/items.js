@@ -4,8 +4,6 @@ import { getDatabase, ref, get, remove } from "firebase/database";
 import "../css/items.css"
 import Maintenance from '../../Maintenance/js/Maintenace';
 
-
-
 function Items({selectedCategory,login}){
 
     const [products, setProducts] = useState([]);
@@ -45,7 +43,7 @@ function Items({selectedCategory,login}){
     }
 
     return(
-        <div className='items productmenu' >
+        <div className='items productmenu'  >
             {console.log(login)}
             {login && !editItem && (
                 

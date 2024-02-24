@@ -1,14 +1,15 @@
 .navbar{
-    border-right: 1px solid black ;
-    border-bottom: 1px solid black;
-    margin:0px;
-    flex-wrap:wrap;
-    flex-grow:1;
-    text-align: center;
-    color:black;
-    font-size: 25px;
-    cursor: pointer;
-    
+  border-right: 1px solid pink ;
+  border-bottom: 1px solid pink;
+  margin:0px;
+  flex-wrap:wrap;
+  flex-grow:1;
+  text-align: center;
+  color:white;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: purple;
+  
 }
 .navbar:hover{
     background-color: lightblue;
@@ -19,4 +20,7 @@
   cursor: pointer;
   height: 25px;
   font-size: 20px;
+}
+div{
+  margin: 0;
 }
