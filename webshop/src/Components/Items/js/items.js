@@ -57,8 +57,9 @@ function Items({selectedCategory,login}){
             products.length > 0 ? (
                 products.map((item, index) => (
                 item.nev && item.Ar && item.Mennyiseg!=null?(
+                    
                     <div className="horizontal" >
-                        <div><img src="https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg" alt="product"/></div>
+                        <div><img src={item.imgUrl ? item.imgUrl : "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg"} alt={item.nev}/></div>
                         <div key={index} className="vertical productmenu">
                             <div className='product'>{item.nev}</div>
                             <div>{item.Ar} Ft</div>
