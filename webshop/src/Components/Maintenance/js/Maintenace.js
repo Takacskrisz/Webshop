@@ -14,37 +14,51 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
     const [ar,setAr]=useState("");
     const [mennyiseg,setMennyiseg]=useState("");
     const [img,setImg]=useState("");
+  
 
     useEffect(() => {
         if (product) {
             setNev(product.nev || "");
             setAr(parseInt(product.Ar) || "");
             setMennyiseg(product.Mennyiseg || "");       
+                  
         }
     }, [product]);
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+        setImg(file);
+    };
+
+
     const saveData = async () => {
 
         const db = getDatabase(app);
         console.log(v4())
         const imgRef=ref_storage(imageDb,`kepek/${v4()}`)
-        
-       
+        var imgUrl="";
+        var Pid=`${nev}|${v4()}`
+        if(product){
+            imgUrl=product.imgUrl
+        }
         try{
-
-        await uploadBytes(imgRef,img)
-        
-        //await new Promise(resolve => setTimeout(resolve, 2000));
-        const imgUrl= await getDownloadURL(imgRef)
-
+            if(img){
+                await uploadBytes(imgRef,img)
+                 imgUrl= await getDownloadURL(imgRef)
+               
+            }
+        //if(editItem){ Pid =product.Pid}
         const newItemData={
 
         'Ar':parseInt(ar),
         'Mennyiseg':parseInt(mennyiseg),
         'nev':nev,
-        'imgUrl':imgUrl
+        'imgUrl':imgUrl,
+        'Pid': Pid
         }
     
-        await set(ref_database(db, `Kategoriak/${selectedCategory}/${nev}`),newItemData);
+        await set(ref_database(db, `Kategoriak/${selectedCategory}/${Pid}`),newItemData);
         
         alert("Sikeres mentés")
         fetchData(selectedCategory)
@@ -54,8 +68,8 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
        }
       }
     return(
-        <div className='horizontal main'>
-            <div>
+        <div className='horizontal main' onDrop={handleDrop} onDragOver={(e) => e.preventDefault()} onDragEnter={(e) => e.preventDefault()}>
+            <div >
                 Válassz ki egy képet
                 <div><input type="file" onChange={(e)=>(setImg(e.target.files[0]))}/></div>
             </div>               
