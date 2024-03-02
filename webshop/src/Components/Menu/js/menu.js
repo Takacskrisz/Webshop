@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import "../css/menu.css"
 import Login from "../../Login/js/Login";
 
-function Menu({handleLogin, login}){
+function Menu({handleLogin, login, handleRegister}){
 
     const [loginWindowToggle, setLoginWindowToggle] = useState(false);
 
@@ -24,7 +24,7 @@ function Menu({handleLogin, login}){
             </div>
             {loginWindowToggle && (
                 <div className='overlay'>
-                    <Login handleLogin={handleLogin} toggleLoginWindow={toggleLoginWindow}/>
+                    <Login handleLogin={handleLogin} toggleLoginWindow={toggleLoginWindow} handleRegister={handleRegister}/>
                 </div>
             )}
             

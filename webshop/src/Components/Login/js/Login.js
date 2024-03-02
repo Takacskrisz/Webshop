@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "../css/login.css"
 
-function Login({handleLogin, toggleLoginWindow}){
+function Login({handleLogin, toggleLoginWindow, handleRegister}){
 
     const [userId,setUserId]=useState()
     const [userPwd,setUserPwd]=useState()
@@ -51,16 +51,13 @@ function Login({handleLogin, toggleLoginWindow}){
                 })
             }) 
 }
-
-
-
     return(
 
         <div className="vertical loginwindow">
             <div>Felhasználónév: <input className='uid' onChange={(e)=>setUserId(e.target.value)}/></div>
             <div>Jelszó:<input className='pass' type="password" onChange={(e)=>setUserPwd(e.target.value)}/></div>
             <div><button className='loginbutton' onClick={loginAttempt}>Bejelentkezés</button></div>
-            <div><button className='loginbutton' >Regisztáció</button></div>
+            <div><button className='loginbutton'onClick={()=>{handleRegister(true); toggleLoginWindow()}} >Regisztáció</button></div>
 
         </div>
     )

@@ -82,7 +82,10 @@ function Items({selectedCategory,login}){
                 ):null))
             ) : (
                 <p>Válasszon kategóriát</p>
-            ))}
+                
+                )
+
+            )}
             {editItem && (
             <div>
                 <p>Szerkesztés</p>
