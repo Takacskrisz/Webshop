@@ -12,6 +12,11 @@ function App() {
 
   
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [currentUser,setCurrentUser]=useState();
+
+  const handleCurrentUser=(user)=>{
+    setCurrentUser(user)
+  }
 
   const handleSelectCategory = (category) => {
       setSelectedCategory(category);
@@ -22,22 +27,22 @@ function App() {
   const handleLogin=(loggedin)=>{
     setLogin(loggedin)
   }
-  const [register,setRegister]=useState(false)
+  const [registerVisible,setRegisterVisible]=useState(false)
 
 
-  const handleRegister=(reg)=>{
-    setRegister(reg)
+  const handleRegister=(isVisible)=>{
+    setRegisterVisible(isVisible)
   }
   useEffect(() => {
     console.log(handleRegister)
   }, []);
   return (
-    <div  style={{background: `url(${Background})`}}>
-    <Menu handleLogin={handleLogin} login={login} handleRegister={handleRegister}/>
+    <div  style={{ background: `url(${Background})`, backgroundSize: 'cover', minHeight: '100vh' }}>
+    <Menu handleLogin={handleLogin} login={login} handleRegister={handleRegister} currentUser={currentUser} handleCurrentUser={handleCurrentUser}/>
     {Header()}
     <Navbar handleSelectCategory={handleSelectCategory} login={login}/>
     <div>
-    {register &&(<Register handleLogin={handleLogin} handleRegister={handleRegister}/>)}
+    {registerVisible && <Register handleLogin={handleLogin} handleRegister={handleRegister} handleCurrentUser={handleCurrentUser} />}
     <Items selectedCategory={selectedCategory} login={login} />
    
     </div>

@@ -41,7 +41,7 @@ module.exports= class Service {
             return false
         }
     }
-    static async register(username, password,userid) {
+    static async register(username, password,userid, email) {
 
         
 
@@ -58,8 +58,8 @@ module.exports= class Service {
         // Authentikáció
 
         const result = await db.run(`
-                        INSERT INTO logindata (Username, PWD, Uid)
-                        VALUES ('${username}', MD5('${password}'), '${userid}')
+                        INSERT INTO logindata (Username, PWD, Uid, email)
+                        VALUES ('${username}', MD5('${password}'), '${userid}','${email}')
         `)
         
         // Authentikáció sikerességének ellenőrzése

@@ -3,6 +3,7 @@ import app from "../../../firebaseConfig";
 import { getDatabase, ref, get, remove } from "firebase/database";
 import "../css/items.css"
 import Maintenance from '../../Maintenance/js/Maintenace';
+import Homepage from '../../HomePage/js/Homepage';
 
 function Items({selectedCategory,login}){
 
@@ -45,7 +46,7 @@ function Items({selectedCategory,login}){
     return(
         <div className='items productmenu'  >
             {console.log(login)}
-            {login && !editItem && (
+            {login && !editItem && products.length>0 &&(
                 
                 <div>
                     <p>Hozzáad</p>
@@ -81,7 +82,7 @@ function Items({selectedCategory,login}){
                     </div>
                 ):null))
             ) : (
-                <p>Válasszon kategóriát</p>
+                <Homepage/>
                 
                 )
 

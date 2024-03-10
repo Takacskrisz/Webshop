@@ -26,7 +26,7 @@ app.post('/api', async (request, response) => {
         response.send(valid)
     }
     if (request.body.action && request.body.action === 'register') {
-        const valid = await Service.register(request.body.username, request.body.password, request.body.userid)
+        const valid = await Service.register(request.body.username, request.body.password, request.body.userid, request.body.email)
 
         response.send(valid)
     }

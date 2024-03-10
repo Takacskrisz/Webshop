@@ -1,17 +1,22 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import {v4} from "uuid";
 
 
-function Register(handleLogin,handleRegister){
+function Register({handleLogin,handleRegister,handleCurrentUser}){
 
     const [newUserName,setNewUserName]=useState("");
     const [newPassword,setNewPassword]=useState("");
     const [newUserId,setNewUserId]=useState("");
+    const [newEmail,setNewEmail]=useState("");
+
+    useEffect(() => {
+        setNewUserId(`${newUserName}${v4()}`)
+    }, [newUserName]);
 
     function registerAttempt(){
 
 
-        setNewUserId(`${newUserName}${v4()}`)
+        
         // Promise objektum visszaadása
   
           return new Promise((resolve, reject) => {
@@ -22,7 +27,8 @@ function Register(handleLogin,handleRegister){
                   action:         'register', 
                   username:       newUserName,
                   password:       newPassword,
-                  userid:         newUserId
+                  userid:         newUserId,
+                  email:          newEmail
               })
           
               // POST kérés elküldése
@@ -39,8 +45,11 @@ function Register(handleLogin,handleRegister){
                   // Eredmény visszaadása
   
                   resolve(data)
+                  alert("Valami!!!")
                   handleRegister(false)
-                  console.log(handleRegister)
+                  handleCurrentUser(newUserName)
+                  handleLogin(true)
+                  
               }).catch((error) => {
   
                   // Hiba történt
@@ -54,6 +63,7 @@ function Register(handleLogin,handleRegister){
                 <div>
                     <div>Felhasználónév:<input onChange={(e)=>setNewUserName(e.target.value)}/></div>
                     <div>Jelszó:<input type="password" onChange={(e)=>setNewPassword(e.target.value)}/></div>
+                    <div>Email:<input onChange={(e)=>setNewEmail(e.target.value)}/></div>
                     <button onClick={registerAttempt}>Regisztráció</button>
                     
                 </div>

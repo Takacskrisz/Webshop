@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "../css/login.css"
 
-function Login({handleLogin, toggleLoginWindow, handleRegister}){
+function Login({handleLogin, toggleLoginWindow, handleRegister, handleCurrentUser}){
 
     const [userId,setUserId]=useState()
     const [userPwd,setUserPwd]=useState()
@@ -36,6 +36,7 @@ function Login({handleLogin, toggleLoginWindow, handleRegister}){
     
                     resolve(data)
                     if(data){
+                        handleCurrentUser(userId)
                         handleLogin(true)
                         toggleLoginWindow()
                     }else{
