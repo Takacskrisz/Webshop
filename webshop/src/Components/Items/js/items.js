@@ -37,7 +37,7 @@ function Items({selectedCategory,login}){
 
     async function removeItem(id,selectedCategory){
         const db = getDatabase(app);
-        const dbRef = ref(db, `Kategoriak/${selectedCategory}/${products[id].nev}`)
+        const dbRef = ref(db, `Kategoriak/${selectedCategory}/${products[id].Pid}`)
         await remove(dbRef)
         await fetchData(selectedCategory);
     }
@@ -49,7 +49,7 @@ function Items({selectedCategory,login}){
                 
                 <div>
                     <p>Hozzáad</p>
-            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} product={[]} handleEditItem={handleEditItem} editItem={editItem}/>
+            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} handleEditItem={handleEditItem} editItem={editItem}/>
                 </div>
             )}
             {console.log(products)}

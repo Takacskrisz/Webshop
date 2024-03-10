@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import app from "../../../firebaseConfig";
 import { imageDb } from '../../../firebaseConfig';
 import { getDatabase, ref as ref_database, get, set, push ,} from "firebase/database";
@@ -13,17 +13,29 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
     const [nev,setNev]=useState("");
     const [ar,setAr]=useState("");
     const [mennyiseg,setMennyiseg]=useState("");
-    const [img,setImg]=useState("");
+    const [img,setImg]=useState();
+    const [imgUrl, setImgUrl] = useState("https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg");
+    const [pid,setPid]=useState(`${nev}|${v4()}`);
+
+    const fileInputRef=useRef(null)
   
 
+    //Amennyiben van Product property, tehát amikor meglévő termék adatát frissítjük, a State-k vegyék fel a termék adatait.
     useEffect(() => {
         if (product) {
             setNev(product.nev || "");
             setAr(parseInt(product.Ar) || "");
             setMennyiseg(product.Mennyiseg || "");       
+            setPid(product.Pid || `${nev}|${v4()}`);
+            setImgUrl(product.imgUrl);            
                   
         }
     }, [product]);
+
+    //nev State változásakor frissítse a pid State-et is az új név alapján
+    useEffect(() => {
+        setPid(`${nev}|${v4()}`);  
+    }, [nev]);
 
     const handleDrop = (e) => {
         e.preventDefault();
@@ -37,28 +49,25 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
         const db = getDatabase(app);
         console.log(v4())
         const imgRef=ref_storage(imageDb,`kepek/${v4()}`)
-        var imgUrl="";
-        var Pid=`${nev}|${v4()}`
-        if(product){
-            imgUrl=product.imgUrl
-        }
+        let newImgUrl= imgUrl
+        
         try{
+            if(!product)setPid(`${nev}|${v4()}`)
             if(img){
                 await uploadBytes(imgRef,img)
-                 imgUrl= await getDownloadURL(imgRef)
-               
+                newImgUrl= await getDownloadURL(imgRef) 
             }
-        //if(editItem){ Pid =product.Pid}
+        
         const newItemData={
 
         'Ar':parseInt(ar),
         'Mennyiseg':parseInt(mennyiseg),
         'nev':nev,
-        'imgUrl':imgUrl,
-        'Pid': Pid
+        'imgUrl':newImgUrl,
+        'Pid': pid
         }
     
-        await set(ref_database(db, `Kategoriak/${selectedCategory}/${Pid}`),newItemData);
+        await set(ref_database(db, `Kategoriak/${selectedCategory}/${pid}`),newItemData);
         
         alert("Sikeres mentés")
         fetchData(selectedCategory)
@@ -66,12 +75,21 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
        }catch(error) {
           alert("Hiba " + error.message);
        }
+
+       if(!editItem){
+        setNev("")
+        setAr("")
+        setMennyiseg("")
+        fileInputRef.current.value=null; 
+       }
       }
+
+
     return(
         <div className='horizontal main' onDrop={handleDrop} onDragOver={(e) => e.preventDefault()} onDragEnter={(e) => e.preventDefault()}>
             <div >
                 Válassz ki egy képet
-                <div><input type="file" onChange={(e)=>(setImg(e.target.files[0]))}/></div>
+                <div><input type="file" ref={fileInputRef} onChange={(e)=>(setImg(e.target.files[0]))}/></div>
             </div>               
             <div className="vertical" >
                 <div>Kategória: {selectedCategory}</div>
