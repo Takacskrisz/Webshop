@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1:3307
--- Létrehozás ideje: 2024. Már 02. 14:37
+-- Létrehozás ideje: 2024. Már 10. 15:19
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -34,15 +34,17 @@ CREATE TABLE `logindata` (
   `Username` varchar(50) NOT NULL,
   `PWD` varchar(100) NOT NULL,
   `Level` int(11) NOT NULL DEFAULT 0,
-  `Uid` varchar(100) NOT NULL
+  `Uid` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `logindata`
 --
 
-INSERT INTO `logindata` (`Username`, `PWD`, `Level`, `Uid`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', 3, 'admin11111');
+INSERT INTO `logindata` (`Username`, `PWD`, `Level`, `Uid`, `email`) VALUES
+('admin', '21232f297a57a5a743894a0e4a801fc3', 3, 'admin11111', 'admin@admin.com'),
+('asdasd', 'fa1b865d9280d4a488afa30fd60216e7', 0, 'asdasd98b60764-4803-4ca1-9b5a-130a352bfc40', 'asdadasdas');
 
 -- --------------------------------------------------------
 
@@ -53,7 +55,6 @@ INSERT INTO `logindata` (`Username`, `PWD`, `Level`, `Uid`) VALUES
 CREATE TABLE `userdata` (
   `Name` varchar(100) NOT NULL,
   `Adress` varchar(250) NOT NULL,
-  `email` varchar(100) NOT NULL,
   `Phonenumber` varchar(30) NOT NULL,
   `UserID` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
@@ -66,12 +67,14 @@ CREATE TABLE `userdata` (
 -- A tábla indexei `logindata`
 --
 ALTER TABLE `logindata`
+  ADD PRIMARY KEY (`email`),
   ADD KEY `Uid` (`Uid`);
 
 --
 -- A tábla indexei `userdata`
 --
 ALTER TABLE `userdata`
+  ADD PRIMARY KEY (`UserID`),
   ADD KEY `UserID` (`UserID`);
 
 --
