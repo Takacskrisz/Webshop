@@ -26,6 +26,7 @@ function Menu({handleLogin, login, handleRegister, currentUser, handleCurrentUse
         if(login){
             handleLogin(false)
             setLoginWindowToggle(false)
+            handleCurrentUser("Admin")
         }
     }
 

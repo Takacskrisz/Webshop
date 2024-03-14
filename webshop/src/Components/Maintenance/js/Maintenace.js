@@ -8,7 +8,7 @@ import {v4} from "uuid";
 
 
 
-function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem}){
+function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem,currentUser}){
 
     const [nev,setNev]=useState("");
     const [ar,setAr]=useState("");
@@ -16,6 +16,7 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
     const [img,setImg]=useState();
     const [imgUrl, setImgUrl] = useState("https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg");
     const [pid,setPid]=useState(`${nev}|${v4()}`);
+    const [elado,setElado]=useState("");
 
     const fileInputRef=useRef(null)
   
@@ -28,6 +29,7 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
             setMennyiseg(product.Mennyiseg || "");       
             setPid(product.Pid || `${nev}|${v4()}`);
             setImgUrl(product.imgUrl);            
+            setElado(product.elado);            
                   
         }
     }, [product]);
@@ -68,7 +70,8 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
         'Mennyiseg':parseInt(mennyiseg),
         'nev':nev,
         'imgUrl':newImgUrl,
-        'Pid': pid
+        'Pid': pid,
+        'elado': elado
         }
     
         await set(ref_database(db, `Kategoriak/${selectedCategory}/${pid}`),newItemData);

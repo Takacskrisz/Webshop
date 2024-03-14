@@ -9,9 +9,10 @@ import Homepage from '../../HomePage/js/Homepage';
 /** az Items komponens tartalmazza a termékeket, és a hozzájuk tartozó adatokat, továbbá azok karbantartófunkcióit
  * @param {state} selectedCategory A kiválasztott kategória
  * @param {state} login A login értéke
+ * @param {state} currentUser A jelenlegi felhasználó
  * @returns {ReactNode} Items komponens
  */
-function Items({selectedCategory,login}){
+function Items({selectedCategory,login,currentUser}){
 
     //Products state, alapértéke üres Tömb, ebbe töltjük fel majd az adatbázisból fogadott termékeket
     const [products, setProducts] = useState([]);
@@ -76,7 +77,7 @@ function Items({selectedCategory,login}){
             {login && !editItem && products.length>0 &&(          
                 <div>
                     <p>Hozzáad</p>
-            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} handleEditItem={handleEditItem} editItem={editItem} />
+            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} handleEditItem={handleEditItem} editItem={editItem} currentUser={currentUser} />
                 </div>
             )}
             {console.log(products)}

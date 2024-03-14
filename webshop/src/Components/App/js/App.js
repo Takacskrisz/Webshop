@@ -7,6 +7,7 @@ import Items from '../../Items/js/items';
 import '../css/App.css';
 import Background from '../../Items/img/bg.jpg';
 import Register from '../../Register/js/register';
+import Chat from '../../Chat/js/chat';
 
 /**App komponens, ezen belül hívjuk meg a többi komponenst
  * @returns {ReactNode} React komponensek
@@ -17,7 +18,7 @@ function App() {
   // A SelectedCategory State tárolja el a kiválasztott kategóriát 
   const [selectedCategory, setSelectedCategory] = useState(null);
   //  A currentUser State tárolja el a jelenlegi felhasználót 
-  const [currentUser,setCurrentUser]=useState();
+  const [currentUser,setCurrentUser]=useState("Admin");
 
   /** HandleCurrenUser egy függvény amit propként használva beállíthatjuk a currentUser értékét más komponensekben
    * @param {string} user felhasználó neve akit be akarunk állítani jelenleginek
@@ -65,6 +66,7 @@ function App() {
     <div>
     {registerVisible && <Register handleLogin={handleLogin} handleRegister={handleRegister} handleCurrentUser={handleCurrentUser} />}
     <Items selectedCategory={selectedCategory} login={login} />
+    <Chat  currentUser={currentUser}/>
     </div>
     </div>
   );
