@@ -65,7 +65,7 @@ function App() {
     <Navbar handleSelectCategory={handleSelectCategory} login={login}/>
     <div>
     {registerVisible && <Register handleLogin={handleLogin} handleRegister={handleRegister} handleCurrentUser={handleCurrentUser} />}
-    <Items selectedCategory={selectedCategory} login={login} />
+    <Items selectedCategory={selectedCategory} login={login} currentUser={currentUser}/>
     <Chat  currentUser={currentUser}/>
     </div>
     </div>

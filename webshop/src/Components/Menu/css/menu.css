@@ -8,8 +8,16 @@
     color: white;
 
 }
-.message{
-    color: white;
+.user{
+    color: pink;
+}
+.welcome{
+    margin-bottom: 0px;
+    margin-top: 1px;
+    height:max-content;
+    line-height: 26px;
+    color:white;
+
 }
 .overlay{
     background-color: pink;
@@ -21,4 +29,19 @@
 	opacity: 0.7;
     color:white;
     text-align: center;
+}
+
+.menu{
+    margin-left: 35px;
+    margin-bottom: 0px;
+    margin-top: 1px;
+    text-align: center;
+    height:max-content;
+    line-height: 26px;
+    cursor: pointer;
+    color:white;
+
+}
+.menu:hover{
+    background-color: lightblue;
 }

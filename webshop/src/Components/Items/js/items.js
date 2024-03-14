@@ -92,7 +92,8 @@ function Items({selectedCategory,login,currentUser}){
                             <div className='product'>{item.nev}</div>
                             <div>{item.Ar} Ft</div>
                             <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
-                            <div><button className='cartbutton'>Kosárba</button></div>
+                            <div>Árulja:{item.elado}</div>
+                            <div><button className='cartbutton'>Üzenet</button></div>
                         </div>
                         {login && !editItem &&(
                 
@@ -117,7 +118,7 @@ function Items({selectedCategory,login,currentUser}){
             {editItem && (
             <div>
                 <p>Szerkesztés</p>
-                <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} product={products[selectedItem]} handleEditItem={handleEditItem} editItem={editItem}/>
+                <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} product={products[selectedItem]} handleEditItem={handleEditItem} editItem={editItem} currentUser={currentUser}/>
             </div>
             
             )}
