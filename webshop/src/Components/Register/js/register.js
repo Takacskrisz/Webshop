@@ -1,18 +1,30 @@
+//szükséges modulok importálása
 import { useState,useEffect } from "react"
 import {v4} from "uuid";
 
-
+/** Register egy komponens ami a regisztációt foglalja magában
+   * @param {function} handleLogin a login state beállítása, 
+   * @param {function} handleRegister a regisztáció komponens megjelenésének állapota true vagy falseD
+   * @param {function} handleCurrentUser jelenlegi felhasználó beállítása
+   * @returns {ReactNode} Register komponens 
+   */
 function Register({handleLogin,handleRegister,handleCurrentUser}){
 
+    //newUserName state a megadott új felhasználó nevet tárolja el
     const [newUserName,setNewUserName]=useState("");
+    //newPassword state a megadott új jelszót tárolja el
     const [newPassword,setNewPassword]=useState("");
+    //newUserId state az új felhasználó azonosítóját tárolja el
     const [newUserId,setNewUserId]=useState("");
+    //newEmail state az új felhasználó email címét tárolja el
     const [newEmail,setNewEmail]=useState("");
 
+    //useEffect react hook figyeli a newUserName változását, és a változott newUserName alapján létrehoz egy newUserId-t
     useEffect(() => {
         setNewUserId(`${newUserName}${v4()}`)
     }, [newUserName]);
 
+    /**registerAttempt függvény elköldi az új felhasználó adatait az adatbázisba */
     function registerAttempt(){
 
 
@@ -70,4 +82,5 @@ function Register({handleLogin,handleRegister,handleCurrentUser}){
             )
 }
 
+//Register komponens exportálása
 export default Register

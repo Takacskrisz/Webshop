@@ -33,9 +33,13 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
     }, [product]);
 
     //nev State változásakor frissítse a pid State-et is az új név alapján
-    useEffect(() => {
-        setPid(`${nev}|${v4()}`);  
-    }, [nev]);
+   
+     useEffect(() => {
+        if(!editItem){
+            setPid(`${nev}|${v4()}`);  
+        }
+    }, [nev]); 
+    
 
     const handleDrop = (e) => {
         e.preventDefault();
@@ -52,7 +56,7 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
         let newImgUrl= imgUrl
         
         try{
-            if(!product)setPid(`${nev}|${v4()}`)
+            
             if(img){
                 await uploadBytes(imgRef,img)
                 newImgUrl= await getDownloadURL(imgRef) 

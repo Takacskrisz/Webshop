@@ -1,19 +1,28 @@
+//Szükséges modulok importálása
 import React, {useState, useEffect} from 'react';
 import app from "../../../firebaseConfig";
 import { getDatabase, ref, get, set, push } from "firebase/database";
 import "../css/navbar.css"
 
 
+/** Navbar egy komponens ami a kategóriák közötti navigációt foglalja magába
+   * @param {state} login a login state értéke 
+   * @param {function} handleSelectCategory kategória kiválasztása
+   * @returns {ReactNode} Navbar komponens 
+   */
  function Navbar({handleSelectCategory,login}){
-
+    // allItems state az összes Termék kategóriájának eltárolására 
     const [allItems, setAllItems] = useState([]);
-    let [newCategory, setNewCategory]= useState("Hozzáad");
+    //newCategory state újonnan megadott kategória nevének tárolására
+    const [newCategory, setNewCategory]= useState("Hozzáad");
     
+    //UseEffect react hook minden stateváltozás-kor meghívja a fetchData() függvényt, frissítve a megjelenített adatokat.
     useEffect(()=>{
         fetchData()
         console.log(allItems)
     },[])
     
+
     const fetchData = async () => {
     const db = getDatabase(app);
     const dbRef = ref(db, "Kategoriak");
@@ -69,4 +78,5 @@ import "../css/navbar.css"
            
     )
 }
+//Nabar komponens exportálása
 export default Navbar

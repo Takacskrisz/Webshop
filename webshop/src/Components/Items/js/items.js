@@ -76,7 +76,7 @@ function Items({selectedCategory,login}){
             {login && !editItem && products.length>0 &&(          
                 <div>
                     <p>Hozzáad</p>
-            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} handleEditItem={handleEditItem} editItem={editItem}/>
+            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} handleEditItem={handleEditItem} editItem={editItem} />
                 </div>
             )}
             {console.log(products)}

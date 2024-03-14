@@ -1,12 +1,24 @@
+//Szükséges modulok importálása
 import React, {useState} from 'react';
 import "../css/login.css"
 
+/** Login egy komponens ami a bejelentkezőablakot foglalja magában
+   * @param {function} handleLogin a login state beállítása, 
+   * @param {function} toggleLoginWindow A login ablak megjelenítését állítja be, true vagy false
+   * @param {function} handleRegister a regisztáció komponens megjelenésének állapota true vagy falseD
+   * @param {function} handleCurrentUser jelenlegi felhasználó beállítása
+   * @returns {ReactNode} Login komponens 
+   */
 function Login({handleLogin, toggleLoginWindow, handleRegister, handleCurrentUser}){
 
+    //userId state a beírt felhasználónevet tárolja
     const [userId,setUserId]=useState()
+    //userPwd state a beírt jelszót tárojla
     const [userPwd,setUserPwd]=useState()
 
-
+    /** loginAttempt függvény ellenőrzi a megadott adatokat
+     * @returns Promise 
+     */
     function loginAttempt(){
 
           // Promise objektum visszaadása
@@ -64,4 +76,5 @@ function Login({handleLogin, toggleLoginWindow, handleRegister, handleCurrentUse
     )
 }
 
+//Login komponens exportálása
 export default Login
