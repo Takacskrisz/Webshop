@@ -27,6 +27,7 @@ function Menu({handleLogin, login, handleMode, mode, currentUser, handleCurrentU
             handleLogin(false)
             setLoginWindowToggle(false)
             handleCurrentUser("Admin")
+            handleMode("buy")
         }
     }
 
