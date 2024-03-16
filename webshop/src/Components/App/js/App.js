@@ -7,7 +7,6 @@ import Items from '../../Items/js/items';
 import '../css/App.css';
 import Background from '../../Items/img/bg.jpg';
 import Register from '../../Register/js/register';
-import Chat from '../../Chat/js/chat';
 import Messages from '../../Messages/js/messages'
 
 /**App komponens, ezen belül hívjuk meg a többi komponenst
@@ -15,6 +14,7 @@ import Messages from '../../Messages/js/messages'
  */
 function App() {
 
+  //a mode State határozza meg a jelenlegi módot. Módok: "buy","register","messages"
   const [mode,setMode]= useState("buy")
   // A SelectedCategory State tárolja el a kiválasztott kategóriát 
   const [selectedCategory, setSelectedCategory] = useState(null);

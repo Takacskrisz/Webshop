@@ -78,7 +78,7 @@ function Messages({currentUser, mode}){
             <div>
                 <div>
                 {[...new Set(messages.filter(message => message.sender === selectedSender || message.receiver===selectedSender).map(filteredMessage => filteredMessage.product))].map((product, index) => (
-                <div key={index} id={product} onClick={(e) => {setSelectedProduct(e.target.id);setToogleChatRoom(true)}} className="product">{product}</div>
+                <div key={index} id={product} onClick={(e) => {setSelectedProduct(e.target.id);setToogleChatRoom(true)}} className="productM">{product}</div>
             ))}
                 </div>
             </div>
