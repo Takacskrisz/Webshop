@@ -5,6 +5,7 @@ import { getDatabase, ref, get, remove } from "firebase/database";
 import "../css/items.css"
 import Maintenance from '../../Maintenance/js/Maintenace';
 import Homepage from '../../HomePage/js/Homepage';
+import Chat from '../../Chat/js/chat'
 
 /** az Items komponens tartalmazza a termékeket, és a hozzájuk tartozó adatokat, továbbá azok karbantartófunkcióit
  * @param {state} selectedCategory A kiválasztott kategória
@@ -20,6 +21,8 @@ function Items({selectedCategory,login,currentUser}){
     const [editItem, setEditItem]=useState(false);
     //selectedItem state, a kiválasztott terméket tárolja el
     const [selectedItem, setSelectedItem]=useState()
+
+    const[toogleChatWindow, setToogleChatWindow]= useState(false);
 
     /** HandleEditItem egy függvény amit propként használva beállíthatjuk az editItem értékét más komponensekben
    * @param {boolean} editing felhasználó neve akit be akarunk állítani jelenleginek
@@ -93,8 +96,11 @@ function Items({selectedCategory,login,currentUser}){
                             <div>{item.Ar} Ft</div>
                             <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
                             <div>Árulja:{item.elado}</div>
-                            <div><button className='cartbutton'>Üzenet</button></div>
-                        </div>
+                            <div><button className='cartbutton' id={index} onClick={(e)=>{
+                                setSelectedItem(e.target.id)
+                                setToogleChatWindow(true)
+                                }}>Üzenet</button></div>
+                            </div>
                         {login && !editItem &&(
                 
                             <div className='vertical maintenancemenu '>
@@ -121,6 +127,9 @@ function Items({selectedCategory,login,currentUser}){
                 <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} product={products[selectedItem]} handleEditItem={handleEditItem} editItem={editItem} currentUser={currentUser}/>
             </div>
             
+            )}
+            {toogleChatWindow &&(
+                <Chat currentUser={currentUser} product={products[selectedItem]} />
             )}
         </div>
         

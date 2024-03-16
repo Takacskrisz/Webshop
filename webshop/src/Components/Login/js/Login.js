@@ -5,11 +5,11 @@ import "../css/login.css"
 /** Login egy komponens ami a bejelentkezőablakot foglalja magában
    * @param {function} handleLogin a login state beállítása, 
    * @param {function} toggleLoginWindow A login ablak megjelenítését állítja be, true vagy false
-   * @param {function} handleRegister a regisztáció komponens megjelenésének állapota true vagy falseD
+   * @param {function} handleMode a Mode state változtatására
    * @param {function} handleCurrentUser jelenlegi felhasználó beállítása
    * @returns {ReactNode} Login komponens 
    */
-function Login({handleLogin, toggleLoginWindow, handleRegister, handleCurrentUser}){
+function Login({handleLogin, toggleLoginWindow, handleMode, handleCurrentUser}){
 
     //userId state a beírt felhasználónevet tárolja
     const [userId,setUserId]=useState()
@@ -70,7 +70,7 @@ function Login({handleLogin, toggleLoginWindow, handleRegister, handleCurrentUse
             <div>Felhasználónév: <input className='uid' onChange={(e)=>setUserId(e.target.value)}/></div>
             <div>Jelszó:<input className='pass' type="password" onChange={(e)=>setUserPwd(e.target.value)}/></div>
             <div><button className='loginbutton' onClick={loginAttempt}>Bejelentkezés</button></div>
-            <div><button className='loginbutton'onClick={()=>{handleRegister(true); toggleLoginWindow()}} >Regisztáció</button></div>
+            <div><button className='loginbutton'onClick={()=>{handleMode("register"); toggleLoginWindow()}} >Regisztáció</button></div>
 
         </div>
     )

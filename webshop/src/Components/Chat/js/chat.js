@@ -1,41 +1,35 @@
-import { useState,useDebugValue, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { storeDb } from "../../../firebaseConfig"
-import { addDoc, collection, serverTimestamp, onSnapshot , query, where} from "firebase/firestore";
+import { addDoc, collection, serverTimestamp} from "firebase/firestore";
 
 
-function Chat({currentUser}){
-
-    const targetUser="Mintaember"
+function Chat({currentUser,product}){
     const [newMessage, setNewMessage]= useState();
-    const [messages, setMessages]= useState([]);
-
+    const [targetUser, setTargetUser]=useState("Mintaember");
     const messagesRef=collection(storeDb, "Messages")
 
-    useEffect(()=>{
-        const queryMessages= query(messagesRef, where("receiver","==", currentUser))
-        console.log(currentUser)
-       const unsubscribe= onSnapshot(queryMessages, (snapshot)=>{
-            let messages=[]
-            snapshot.forEach((doc)=>{
-                messages.push({...doc.data(), id: doc.id})
-            })
-            setMessages(messages)
-
-        })
-        return ()=> unsubscribe()
-    },[currentUser])
+    useEffect(() => {
+        if(product){
+            setTargetUser(product.elado)
+        }
+    }, [product]);
+    
 
     const handleSubmit= async(e)=>{
         e.preventDefault();
         if(newMessage==="") return;
 
-
+        try {
         await addDoc(messagesRef, {
             text: newMessage,
             createdAt: serverTimestamp(),
             sender: currentUser,
             receiver: targetUser,
-        });
+            product: product.Pid,
+        });}
+        catch(error){
+            console.log(error)
+        }
 
         setNewMessage("")
 
@@ -43,7 +37,10 @@ function Chat({currentUser}){
     return(
 
         <div>
-            <div>{messages.map((message)=> <h1>{message.text}</h1> )}</div>
+            <div>
+                <p>Érdekel a {product.nev} áru? </p>
+                <p>Vedd fel a kapcsolatot {product.elado}-val:</p>
+            </div>
             <form onSubmit={handleSubmit}>
                 <input 
                 placeholder="Írd ide az üzenetet"

@@ -4,11 +4,11 @@ import {v4} from "uuid";
 
 /** Register egy komponens ami a regisztációt foglalja magában
    * @param {function} handleLogin a login state beállítása, 
-   * @param {function} handleRegister a regisztáció komponens megjelenésének állapota true vagy falseD
+   * @param {function} handleMode a mode state beállítása
    * @param {function} handleCurrentUser jelenlegi felhasználó beállítása
    * @returns {ReactNode} Register komponens 
    */
-function Register({handleLogin,handleRegister,handleCurrentUser}){
+function Register({handleLogin,handleMode,handleCurrentUser}){
 
     //newUserName state a megadott új felhasználó nevet tárolja el
     const [newUserName,setNewUserName]=useState("");
@@ -57,10 +57,10 @@ function Register({handleLogin,handleRegister,handleCurrentUser}){
                   // Eredmény visszaadása
   
                   resolve(data)
-                  alert("Valami!!!")
-                  handleRegister(false)
+                  alert("Sikeres Regsztáció")
                   handleCurrentUser(newUserName)
                   handleLogin(true)
+                  handleMode("buy")
                   
               }).catch((error) => {
   

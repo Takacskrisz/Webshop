@@ -1,0 +1,63 @@
+.messagemenu{
+    border-top: 10px solid black;
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+
+}
+
+.Senders{
+    text-align: center;
+    width: 200px;
+    height: 100%;
+    border-right: 10px solid black;
+}
+
+.sender{
+    color:white;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: purple;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.sender:hover{
+    background-color: lightblue;
+    transform: scale(1.1);
+}
+.product{
+    color:white;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: purple;
+    border: 1px solid white;
+    cursor: pointer;
+}
+.chatroom{
+    width: 500px;
+    height: fit-content;
+    border: 10px solid white;
+    background-color: lightblue;
+    color:purple;
+    font-size:40px;
+}
+.right{
+    text-align: right;
+}
+.left{
+    text-align: left;
+}
+.date{
+    font-size: 10px;
+    color: rgb(31, 126, 22);
+}
+.chatbox{
+    width: 500px;
+    height: 200px;
+
+}
+.submitM{
+    height: 100px;
+    width: 100px;
+}
