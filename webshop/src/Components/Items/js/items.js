@@ -25,11 +25,18 @@ function Items({selectedCategory,login,currentUser}){
     const[toogleChatWindow, setToogleChatWindow]= useState(false);
 
     /** HandleEditItem egy függvény amit propként használva beállíthatjuk az editItem értékét más komponensekben
-   * @param {boolean} editing felhasználó neve akit be akarunk állítani jelenleginek
+   * @param {boolean} editing true vagy false érték, hogy jelenleg szerkesztünk-e adatokat
    * @returns {state} editItem
    */
     const handleEditItem=(editing)=>{
         setEditItem(editing)
+    }
+    /** HandleToogleChatWindow egy függvény amit propként használva beállíthatjuk a toogleChatWindow értékét más komponensekben
+   * @param {boolean} chat felhasználó neve akit be akarunk állítani jelenleginek
+   * @returns {state} toogleChatWindow
+   */
+    const handleToogleChatWindow=(chat)=>{
+        setToogleChatWindow(chat)
     }
     //UseEffect ReactHook, figyeli hogy változik-e a kiválasztott kategória, és ha igen, a fetchData függvénnyel lekéri az adatokat az adatbázisból
     useEffect(() => {
@@ -129,7 +136,7 @@ function Items({selectedCategory,login,currentUser}){
             
             )}
             {toogleChatWindow &&(
-                <Chat currentUser={currentUser} product={products[selectedItem]} />
+                <Chat currentUser={currentUser} product={products[selectedItem]} handleToogleChatWindow={handleToogleChatWindow} />
             )}
         </div>
         
