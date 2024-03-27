@@ -61,7 +61,7 @@ import "../css/navbar.css"
             {allItems.map((item,index)=>(
             <div className='navbar' key={index} onClick={() => handleSelectCategory(item)}>{item}</div>
             ))}
-
+        <div className='navbar'><span  onClick={()=>handleSelectCategory("minden")}>Minden</span></div>
         {login && (
              <div className='horizontal ' > 
                 <div > 

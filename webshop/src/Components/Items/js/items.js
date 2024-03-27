@@ -49,6 +49,9 @@ function Items({selectedCategory,login,currentUser, mode,}){
         if (mode=="buy" && selectedCategory) {
             fetchData(selectedCategory);
         }
+        if (mode=="buy" && selectedCategory=="minden") {
+            fetchAllData();
+        }
     }, [selectedCategory]);
    
 
@@ -58,6 +61,9 @@ function Items({selectedCategory,login,currentUser, mode,}){
      * @returns {state} products
      */
     const fetchData = async (category) => {
+        if(category=="minden"){
+            return
+        }
         //Elmentjük const db-be a korábban beimportált getDatabase funkció segítségével a firebase RealTimeDatabase adatait
         const db = getDatabase(app);
         //Elmentjük const drRef be adatbázison belüli útvonalat, amit a megadott kategória alapján hozunk létre
