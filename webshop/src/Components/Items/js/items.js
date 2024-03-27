@@ -14,7 +14,7 @@ import Chat from '../../Chat/js/chat'
  * @param {state} mode A jelenlegi mód
  * @returns {ReactNode} Items komponens
  */
-function Items({selectedCategory,login,currentUser, mode, handleSelectCategory}){
+function Items({selectedCategory,login,currentUser, mode,}){
 
     //Products state, alapértéke üres Tömb, ebbe töltjük fel majd az adatbázisból fogadott termékeket
     const [products, setProducts] = useState([]);
@@ -125,7 +125,7 @@ function Items({selectedCategory,login,currentUser, mode, handleSelectCategory})
                         editItem={editItem}
                         currentUser={currentUser}
                         handleToogleAddWindow={handleToogleAddWindow}
-                        handleSelectCategory={handleSelectCategory} />}
+                        mode={mode} />}
                 </div>
             )}
             {console.log(products)}

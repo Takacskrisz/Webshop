@@ -8,7 +8,7 @@ import {v4} from "uuid";
 
 
 
-function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem,currentUser,handleToogleAddWindow, handleSelectCategory}){
+function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem,currentUser,handleToogleAddWindow, mode}){
 
     const [nev,setNev]=useState("");
     const [ar,setAr]=useState("");
@@ -17,11 +17,14 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
     const [imgUrl, setImgUrl] = useState("https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg");
     const [pid,setPid]=useState(`${nev}|${v4()}`);
     const [elado,setElado]=useState(currentUser);
+    const [category,setCategory]=useState(selectedCategory)
     console.log(currentUser)
 
     const fileInputRef=useRef(null)
   
-
+    useEffect(() => {
+        console.log(selectedCategory)
+    }, [selectedCategory]); 
     //Amennyiben van Product property, tehát amikor meglévő termék adatát frissítjük, a State-k vegyék fel a termék adatait.
     useEffect(() => {
         if (product) {
@@ -75,12 +78,12 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
         'elado': elado
         }
     
-        await set(ref_database(db, `Kategoriak/${selectedCategory}/${pid}`),newItemData);
+        await set(ref_database(db, `Kategoriak/${category}/${pid}`),newItemData);
         
         alert("Sikeres mentés")
-        fetchData(selectedCategory)
+        fetchData(category)
         handleEditItem(false)
-        handleToogleAddWindow(false)
+        
        }catch(error) {
           alert("Hiba " + error.message);
        }
@@ -89,6 +92,7 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
         setNev("")
         setAr("")
         setMennyiseg("")
+        handleToogleAddWindow(false)
         fileInputRef.current.value=null; 
        }
       }
@@ -102,7 +106,7 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
             </div>               
             <div className="vertical" >
                 <div>Kategória:
-                    <select id="categorySelect" value={selectedCategory} onChange={(e) => handleSelectCategory(e.target.value)}>
+                    <select id="categorySelect" value={selectedCategory} onChange={(e) => setCategory(e.target.value)}>
                     <option value="">Válassz kategóriát...</option>
                     <option value="Bútorok">Bútorok</option>
                     <option value="Cipők">Cipők</option>
