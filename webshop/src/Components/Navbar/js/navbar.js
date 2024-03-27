@@ -58,9 +58,10 @@ import "../css/navbar.css"
 
     return(
         <div className="horizontal flex background">
-            {allItems.map((item,index)=>(
+            {allItems.filter(item=>(item!="Egyéb")).map((item,index)=>(
             <div className='navbar' key={index} onClick={() => handleSelectCategory(item)}>{item}</div>
             ))}
+        <div className='navbar'><span  onClick={()=>handleSelectCategory("Egyéb")}>Egyéb</span></div>
         <div className='navbar'><span  onClick={()=>handleSelectCategory("minden")}>Minden</span></div>
         {login && (
              <div className='horizontal ' > 
