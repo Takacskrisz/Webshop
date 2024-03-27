@@ -1,26 +1,42 @@
-.navbar{
-  border-right: 1px solid pink ;
+.background {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar {
+  border-right: 1px solid pink;
   border-bottom: 1px solid pink;
-  margin:0px;
-  flex-wrap:wrap;
-  flex-grow:1;
+  margin: 0px;
   text-align: center;
-  color:white;
+  color: white;
   font-size: 25px;
   cursor: pointer;
   background-color: purple;
-  
-}
-.navbar:hover{
-    background-color: lightblue;
+  flex-grow: 1;
+  width: 200px; /* Set a fixed width for each navbar item */
 }
 
-.newcategory{
+.navbar:hover {
+  background-color: lightblue;
+}
 
+.newcategory {
   cursor: pointer;
   height: 25px;
   font-size: 20px;
 }
-div{
+
+div {
   margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .background {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .navbar{
+    width: 500px;
+  }
 }
