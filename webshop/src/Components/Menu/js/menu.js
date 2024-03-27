@@ -40,7 +40,7 @@ function Menu({handleLogin, login, handleMode, mode, currentUser, handleCurrentU
             <>
                 <div className='welcome'>Üdvözlünk <span className='user'>{`${currentUser}`}</span></div>
                 <div className='menu'><span onClick={()=>handleMode("buy")}>Vásárol</span></div>
-                <div className='menu'>Elad</div>
+                <div className='menu'><span onClick={()=>handleMode("sell")}>Elad</span></div>
                 <div className='menu' ><span onClick={()=>handleMode("messages")}>Üzenetek</span></div>
                 <div className='menu'>Beállítások</div>
                 {console.log(mode)}

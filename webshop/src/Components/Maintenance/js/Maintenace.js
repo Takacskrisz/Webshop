@@ -8,7 +8,7 @@ import {v4} from "uuid";
 
 
 
-function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem,currentUser}){
+function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem,currentUser,handleToogleAddWindow, handleSelectCategory}){
 
     const [nev,setNev]=useState("");
     const [ar,setAr]=useState("");
@@ -80,6 +80,7 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
         alert("Sikeres mentés")
         fetchData(selectedCategory)
         handleEditItem(false)
+        handleToogleAddWindow(false)
        }catch(error) {
           alert("Hiba " + error.message);
        }
@@ -100,19 +101,30 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
                 <div><input type="file" ref={fileInputRef} onChange={(e)=>(setImg(e.target.files[0]))}/></div>
             </div>               
             <div className="vertical" >
-                <div>Kategória: {selectedCategory}</div>
+                <div>Kategória:
+                    <select id="categorySelect" value={selectedCategory} onChange={(e) => handleSelectCategory(e.target.value)}>
+                    <option value="">Válassz kategóriát...</option>
+                    <option value="Bútorok">Bútorok</option>
+                    <option value="Cipők">Cipők</option>
+                    <option value="Egyéb">Egyéb</option>
+                    <option value="Játékok">Játékok</option>
+                    <option value="Ruhák">Ruhák</option>
+                    </select>
+                     </div>
                 <div><label>Termék Név:</label> <input onChange={(e)=>(setNev(e.target.value))} value={nev}/></div>
                 <div><label>Termék Ár:</label> <input type='number' onChange={(e)=>(setAr(e.target.value))} value={ar}/></div>
                 <div><label>Termék Mennyiség:</label> <input type='number' onChange={(e)=>(setMennyiseg(e.target.value))} value={mennyiseg}/></div>                
                 <div><button onClick={saveData}>Mentés</button></div>
-                {editItem && (
-                    <div>
-                        <button onClick={()=>{
-                            handleEditItem(false)
-                            
-                            }}>Mégsem</button>
-                    </div>
-                )}
+                <div>
+                    <button onClick={()=>{
+                        handleEditItem(false)
+                        handleToogleAddWindow(false)
+                        
+                        }}>
+                            Mégsem
+                    </button>
+                </div>
+            
             </div>
         </div>
     )

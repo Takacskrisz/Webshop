@@ -11,9 +11,10 @@ import Chat from '../../Chat/js/chat'
  * @param {state} selectedCategory A kiválasztott kategória
  * @param {state} login A login értéke
  * @param {state} currentUser A jelenlegi felhasználó
+ * @param {state} mode A jelenlegi mód
  * @returns {ReactNode} Items komponens
  */
-function Items({selectedCategory,login,currentUser}){
+function Items({selectedCategory,login,currentUser, mode, handleSelectCategory}){
 
     //Products state, alapértéke üres Tömb, ebbe töltjük fel majd az adatbázisból fogadott termékeket
     const [products, setProducts] = useState([]);
@@ -21,8 +22,10 @@ function Items({selectedCategory,login,currentUser}){
     const [editItem, setEditItem]=useState(false);
     //selectedItem state, a kiválasztott terméket tárolja el
     const [selectedItem, setSelectedItem]=useState()
+    
 
     const[toogleChatWindow, setToogleChatWindow]= useState(false);
+    const[toogleAddWindow, setToogleAddWindow]= useState(false);
 
     /** HandleEditItem egy függvény amit propként használva beállíthatjuk az editItem értékét más komponensekben
    * @param {boolean} editing true vagy false érték, hogy jelenleg szerkesztünk-e adatokat
@@ -38,9 +41,12 @@ function Items({selectedCategory,login,currentUser}){
     const handleToogleChatWindow=(chat)=>{
         setToogleChatWindow(chat)
     }
+    const handleToogleAddWindow=(add)=>{
+        setToogleAddWindow(add)
+    }
     //UseEffect ReactHook, figyeli hogy változik-e a kiválasztott kategória, és ha igen, a fetchData függvénnyel lekéri az adatokat az adatbázisból
     useEffect(() => {
-        if (selectedCategory) {
+        if (mode=="buy" && selectedCategory) {
             fetchData(selectedCategory);
         }
     }, [selectedCategory]);
@@ -66,6 +72,31 @@ function Items({selectedCategory,login,currentUser}){
             console.log("error.message");
         }
     }
+
+    const fetchAllData = async () => {
+        const db = getDatabase(app);
+        const dbRef = ref(db, `Kategoriak`);
+        const snapshot = await get(dbRef);
+    
+        if (snapshot.exists()) {
+            const allProducts = Object.values(snapshot.val());
+            const productsArray = [];
+    
+            allProducts.forEach(category => {
+                if (category.item) {
+                    delete category.item; // Remove the "item" key from the category
+                    const categoryProducts = Object.values(category);
+                    categoryProducts.forEach(product => {
+                        productsArray.push(product);
+                    });
+                }
+            });
+    
+            setProducts(productsArray);
+        } else {
+            console.log("error.message");
+        }
+    }
     /** A removeItem egy async függvény ami kitörli az adott terméket, a termék id je és a kiválasztott kategóra alapján
    * @param {int} id a kiválasztott termék id-je a product state-en belül
    * @param {state} selectedCategory a kiválaszott kategória
@@ -84,14 +115,21 @@ function Items({selectedCategory,login,currentUser}){
     return(
         <div className='items productmenu'  >
             {console.log(login)}
-            {login && !editItem && products.length>0 &&(          
+            {login && !editItem && products.length>0 && mode=="sell" &&(          
                 <div>
-                    <p>Hozzáad</p>
-            <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} handleEditItem={handleEditItem} editItem={editItem} currentUser={currentUser} />
+                    <button onClick={()=>{handleToogleAddWindow(true)}}>Hozzáad</button>
+                    {toogleAddWindow && <Maintenance
+                        selectedCategory={selectedCategory }
+                        fetchData={fetchData}
+                        handleEditItem={handleEditItem}
+                        editItem={editItem}
+                        currentUser={currentUser}
+                        handleToogleAddWindow={handleToogleAddWindow}
+                        handleSelectCategory={handleSelectCategory} />}
                 </div>
             )}
             {console.log(products)}
-            {!editItem && (
+            {!editItem && mode=="buy" &&(
             products.length > 0 ? (
                 products.map((item, index) => (
                 item.nev && item.Ar && item.Mennyiseg!=null?(
@@ -128,6 +166,36 @@ function Items({selectedCategory,login,currentUser}){
                 )
 
             )}
+            {!editItem && mode=="sell" &&(
+                fetchAllData(),
+                products.length > 0 ? (
+                
+                products.filter(product=>(product.elado==currentUser)).map((item, index) => (
+                item.nev && item.Ar && item.Mennyiseg!=null?(
+                    
+                    <div className="horizontal" >
+                        <div><img className='img' src={item.imgUrl ? item.imgUrl : "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg"} alt={item.nev}/></div>
+                        <div key={index} className="vertical productmenu">
+                            <div className='product'>{item.nev}</div>
+                            <div>{item.Ar} Ft</div>
+                            <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
+                            <div>Árulja:{item.elado}</div>
+                        </div>  
+                        {login && !editItem &&(
+                
+                            <div className='vertical maintenancemenu '>
+                                <div><button id={index} className='maintenancebuttons' title='Szerkesztés' onClick={(e)=>{
+                                    handleEditItem(true)
+                                    setSelectedItem(e.target.id)}}> Szerkesztés</button></div>
+                                <div><button id={index} className='maintenancebuttons' title='Törlés' onClick={(e)=>{
+                                    if(window.confirm(`Biztosan törölni szeretnéd a ${products[e.target.id].nev} terméket?`)){
+                                    removeItem(e.target.id,selectedCategory)}
+                                }}>Törlés</button></div>
+                            </div>
+                        )}
+                    </div>
+                ):null))
+            ):null)}
             {editItem && (
             <div>
                 <p>Szerkesztés</p>

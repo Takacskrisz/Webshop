@@ -48,6 +48,9 @@ function App() {
     setLogin(loggedin)
   }
 
+  useEffect(() => {
+    console.log(mode)
+}, []);
   /** HandleRegister egy függvény amit propként használva beállíthatjuk a RegisterVisible értékét más komponensekben
    * @param {boolean} isVisible regisztáció komponens láthatóságának értéke, true vagy false
    * @returns {state} registerVisible
@@ -65,7 +68,8 @@ function App() {
     {mode=="buy" &&<Navbar handleSelectCategory={handleSelectCategory} login={login}/>}
     <div>
     {mode=="register" && <Register handleLogin={handleLogin} handleMode={handleMode} handleCurrentUser={handleCurrentUser} />}
-    {mode=="buy" &&<Items selectedCategory={selectedCategory} login={login} currentUser={currentUser}/>}
+    {mode=="buy" &&<Items selectedCategory={selectedCategory} login={login} currentUser={currentUser} mode={mode} handleSelectCategory={handleSelectCategory}/>}
+    {mode=="sell" &&<Items selectedCategory={selectedCategory} login={login} currentUser={currentUser} mode={mode} handleSelectCategory={handleSelectCategory}/>}
     {mode=="messages"&& <Messages currentUser={currentUser} mode={mode}/>}
     </div>
     </div>
