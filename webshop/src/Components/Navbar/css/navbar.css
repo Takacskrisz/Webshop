@@ -31,12 +31,12 @@ div {
   margin: 0;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 550px) {
   .background {
     flex-direction: column;
     align-items: stretch;
   }
   .navbar{
-    width: 500px;
+    width: 100%;
   }
 }

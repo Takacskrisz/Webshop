@@ -67,8 +67,10 @@ function Login({handleLogin, toggleLoginWindow, handleMode, handleCurrentUser}){
     return(
 
         <div className="vertical loginwindow">
-            <div>Felhasználónév: <input className='uid' onChange={(e)=>setUserId(e.target.value)}/></div>
-            <div>Jelszó:<input className='pass' type="password" onChange={(e)=>setUserPwd(e.target.value)}/></div>
+            <div>Felhasználónév:</div>
+            <div className='uid'><input onChange={(e)=>setUserId(e.target.value)}/></div>
+            <div>Jelszó:</div> 
+            <div className='pass'><input type="password" onChange={(e)=>setUserPwd(e.target.value)}/></div>
             <div><button className='loginbutton' onClick={loginAttempt}>Bejelentkezés</button></div>
             <div><button className='loginbutton'onClick={()=>{handleMode("register"); toggleLoginWindow()}} >Regisztáció</button></div>
 

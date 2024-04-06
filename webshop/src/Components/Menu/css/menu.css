@@ -1,13 +1,27 @@
-.account{
-    margin-left:1000px;
+.account {
+    text-align: right;
     font-style: italic;
     text-decoration: underline;
-    margin-right: 20px;
     cursor: pointer;
     font-size: 20px;
     color: white;
+    position: absolute; /* Position the element relative to the nearest positioned ancestor */
+    top: 0; /* Align to the top */
+    right: 20px; /* Set right margin */
+  }
+  
+  .tmenu {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    padding: 10px 20px;
+    position: relative; /* Add relative positioning to the container */
+    height: 10px;
+    align-items: center;
+  }
 
-}
+  
+
 .user{
     color: pink;
 }
@@ -21,8 +35,10 @@
 }
 .overlay{
     background-color: pink;
-	height: 10%;
-	width: 20%;
+	height: 150px;
+	width: 250px;
+    margin-top: 10px;
+    margin-right: 10px;
 	position: absolute;
 	top: 30px;
     right:0px;
@@ -45,3 +61,36 @@
 .menu:hover{
     background-color: lightblue;
 }
+
+@media only screen and (max-width: 550px) {
+    .menus {
+      flex-direction: column;
+      align-items: flex-start;
+      position: absolute;
+      background-color: black;
+      left: 0px;
+      top: 0px;
+      margin: 0;
+    }
+    .menu{
+        width: 100%;
+        margin:0;
+        padding: 0;
+        text-align: left;
+       
+    }
+    .welcome{
+        margin: 0;
+        width: 100%;
+        padding: 0;
+        text-align: left;
+        align-items: center;
+
+    
+    }
+    .account {
+      margin-right: 0;
+      text-align: right;
+      order: 1;
+    }
+  }
