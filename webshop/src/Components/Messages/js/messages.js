@@ -13,6 +13,7 @@ function Messages({currentUser, mode}){
     const messagesRef=collection(storeDb, "Messages")
     const [newMessage, setNewMessage]= useState();
     const [targetUser, setTargetUser]=useState("Mintaember");
+    const [selectedProductImgUrl, setSelectedProductImgUrl] = useState(null);
 
     useEffect(()=>{
         setTargetUser(selectedSender)
@@ -66,9 +67,17 @@ function Messages({currentUser, mode}){
     
         }
 
+        useEffect(() => {
+           
+            const messageWithProduct = messages.find(message => message.product === selectedProduct);
+            if (messageWithProduct) {
+                setSelectedProductImgUrl(messageWithProduct.img);
+            } else {
+                setSelectedProductImgUrl(null); 
+            }
+        }, [selectedProduct, messages]);
 
-
-
+        console.log("Selected product image URL:", selectedProductImgUrl);
     return(
 
         <div className="horizontal messagemenu">
@@ -85,7 +94,11 @@ function Messages({currentUser, mode}){
                 </div>
             </div>
             {toogleChatRoom &&(<div className="vertical chatContainM">
-                <div className="selectedCat">{selectedProduct}</div>
+                <div className="selectedCat horizontal ">
+                    <div>{selectedSender}</div>
+                    <div style={{textAlign:"center", width:"33%"}}><img className="smallimgM" src={selectedProductImgUrl}/></div>
+                    <div style={{textAlign:"right", width:"33%"}}>{currentUser}</div>
+                </div>
                 <div className="chatroom">
                     <div>
                     {messages.filter(message => (message.sender === selectedSender || message.receiver === selectedSender) && message.product === selectedProduct).sort((a, b) => a.createdAt - b.createdAt).map(filteredMessage => ( 

@@ -130,9 +130,9 @@ background-color: purple;
     }
     .product{
         font-weight: bold;
-        font-size: 40px;
+        font-size: 25px;
         margin-bottom: 25px;
-        margin-left: 10px;
+        margin-left: 0px;
     }
     .items{
         width: 100%;

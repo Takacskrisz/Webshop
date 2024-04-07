@@ -77,6 +77,10 @@
     height: 109px;
     width: 100x;
 }
+.smallimgM{
+    height: 50px;
+    width: 50px;
+}
 @media only screen and (max-width: 800px) {
 
     .messagemenu{
