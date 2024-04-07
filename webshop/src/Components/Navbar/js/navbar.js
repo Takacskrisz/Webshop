@@ -7,10 +7,11 @@ import "../css/navbar.css"
 
 /** Navbar egy komponens ami a kategóriák közötti navigációt foglalja magába
    * @param {state} login a login state értéke 
+   * @param {state} currentUser a jelenlegi felhasználó értéke 
    * @param {function} handleSelectCategory kategória kiválasztása
    * @returns {ReactNode} Navbar komponens 
    */
- function Navbar({handleSelectCategory,login}){
+ function Navbar({handleSelectCategory,login,currentUser}){
     // allItems state az összes Termék kategóriájának eltárolására 
     const [allItems, setAllItems] = useState([]);
     //newCategory state újonnan megadott kategória nevének tárolására
@@ -62,8 +63,8 @@ import "../css/navbar.css"
             <div className='navbar' key={index} onClick={() => handleSelectCategory(item)}>{item}</div>
             ))}
         <div className='navbar'><span  onClick={()=>handleSelectCategory("Egyéb")}>Egyéb</span></div>
-        <div className='navbar'><span  onClick={()=>handleSelectCategory("minden")}>Minden</span></div>
-        {login && (
+        <div className='navbar'><span  onClick={()=>handleSelectCategory("Minden")}>Minden</span></div>
+        {login && currentUser=="admin"&&(
              <div className='horizontal ' > 
                 <div > 
                     <input type='text' value={newCategory} onChange={(e)=>{

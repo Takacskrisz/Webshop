@@ -49,7 +49,7 @@ function Items({selectedCategory,login,currentUser, mode,}){
         if (mode=="buy" && selectedCategory) {
             fetchData(selectedCategory);
         }
-        if (mode=="buy" && selectedCategory=="minden") {
+        if (mode=="buy" && selectedCategory=="Minden") {
             fetchAllData();
         }
     }, [selectedCategory]);
@@ -61,7 +61,7 @@ function Items({selectedCategory,login,currentUser, mode,}){
      * @returns {state} products
      */
     const fetchData = async (category) => {
-        if(category=="minden"){
+        if(category=="Minden"){
             return
         }
         //Elmentjük const db-be a korábban beimportált getDatabase funkció segítségével a firebase RealTimeDatabase adatait
@@ -118,12 +118,36 @@ function Items({selectedCategory,login,currentUser, mode,}){
         await fetchData(selectedCategory);
     }
 
+    const [isFixed, setIsFixed] = useState(false);
+
+    useEffect(() => {
+        function handleScroll() {
+        const selectedCat = document.querySelector('.selectedCat');
+        const offsetTop = selectedCat.offsetTop;
+        const scrollTop = window.scrollY;
+
+        if (scrollTop > offsetTop) {
+            setIsFixed(true);
+        } else {
+            setIsFixed(false);
+        }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+        window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    
     return(
+        <div>
+        {mode=="buy" && selectedCategory!=null&&(<div className={`selectedCat ${isFixed ? 'fixed' : ''}`}>{selectedCategory}</div>)}
+        {mode=="sell"&&(<div className='sellI selectedCat'>Eladás Lista</div>)}
         <div className='items productmenu'  >
-            {console.log(login)}
             {login && !editItem && products.length>0 && mode=="sell" &&(          
                 <div>
-                    <button onClick={()=>{handleToogleAddWindow(true)}}>Hozzáad</button>
+                    <button className='addbuttonI' onClick={()=>{handleToogleAddWindow(true)}}>Hozzáad</button>
                     {toogleAddWindow && <Maintenance
                         selectedCategory={selectedCategory }
                         fetchData={fetchData}
@@ -131,39 +155,46 @@ function Items({selectedCategory,login,currentUser, mode,}){
                         editItem={editItem}
                         currentUser={currentUser}
                         handleToogleAddWindow={handleToogleAddWindow}
-                        mode={mode} />}
+                        toogleAddWindow={toogleAddWindow} />}
                 </div>
             )}
-            {console.log(products)}
             {!editItem && mode=="buy" &&(
             products.length > 0 ? (
                 products.map((item, index) => (
                 item.nev && item.Ar && item.Mennyiseg!=null?(
                     
-                    <div className="horizontal" >
-                        <div><img className='img' src={item.imgUrl ? item.imgUrl : "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg"} alt={item.nev}/></div>
-                        <div key={index} className="vertical productmenu">
+                    <div className="horizontal productmenu" >
+                        <div><img className='imgI' src={item.imgUrl ? item.imgUrl : "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg"} alt={item.nev}/></div>
+                        <div key={index} className="vertical ">
                             <div className='product'>{item.nev}</div>
                             <div>{item.Ar} Ft</div>
-                            <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
                             <div>Árulja:{item.elado}</div>
-                            <div><button className='cartbutton' id={index} onClick={(e)=>{
+                            <div><button className='messagebuttonI' id={index} onClick={(e)=>{
                                 setSelectedItem(e.target.id)
                                 setToogleChatWindow(true)
-                                }}>Üzenet</button></div>
-                            </div>
-                        {login && !editItem &&(
+                                
+                                }}
+                                disabled={item.elado === currentUser|| !login}
+                                title={item.elado === currentUser ? "Nem írhatsz magadnak üzenetet" : (!login ? "Jelentkezz be az üzenetíráshoz" : "")}
+                                >Üzenet</button></div>
+                        {login && !editItem && currentUser=="admin" &&(
                 
                             <div className='vertical maintenancemenu '>
-                                <div><button id={index} className='maintenancebuttons' title='Szerkesztés' onClick={(e)=>{
-                                    handleEditItem(true)
-                                    setSelectedItem(e.target.id)}}> Szerkesztés</button></div>
                                 <div><button id={index} className='maintenancebuttons' title='Törlés' onClick={(e)=>{
                                     if(window.confirm(`Biztosan törölni szeretnéd a ${products[e.target.id].nev} terméket?`)){
                                     removeItem(e.target.id,selectedCategory)}
-                                }}>Törlés</button></div>
+                                }}><svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg></button></div>
                             </div>
-                        )}
+                            )}
+                        </div>
+
+                        
                     </div>
                 ):null))
             ) : (
@@ -172,6 +203,7 @@ function Items({selectedCategory,login,currentUser, mode,}){
                 )
 
             )}
+          
             {!editItem && mode=="sell" &&(
                 fetchAllData(),
                 products.length > 0 ? (
@@ -179,26 +211,39 @@ function Items({selectedCategory,login,currentUser, mode,}){
                 products.filter(product=>(product.elado==currentUser)).map((item, index) => (
                 item.nev && item.Ar && item.Mennyiseg!=null?(
                     
-                    <div className="horizontal" >
-                        <div><img className='img' src={item.imgUrl ? item.imgUrl : "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg"} alt={item.nev}/></div>
-                        <div key={index} className="vertical productmenu">
+                    <div className="horizontal productmenu" >
+                        <div><img className='imgI' src={item.imgUrl ? item.imgUrl : "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg"} alt={item.nev}/></div>
+                        <div key={index} className="vertical ">
                             <div className='product'>{item.nev}</div>
                             <div>{item.Ar} Ft</div>
-                            <div>{item.Mennyiseg >0 ?(<div className='raktar'>Raktáron({item.Mennyiseg})</div>):(<div className='elfogyott'>Elfogyott</div>)}</div>
+                            <div>{item.Mennyiseg}{"db"}</div>
                             <div>Árulja:{item.elado}</div>
-                        </div>  
-                        {login && !editItem &&(
+                            {login && !editItem && mode=="sell" &&(
                 
-                            <div className='vertical maintenancemenu '>
+                            <div className='horizontal maintenancemenu '>
                                 <div><button id={index} className='maintenancebuttons' title='Szerkesztés' onClick={(e)=>{
+                                    console.log(products[e.target.id].nev)
                                     handleEditItem(true)
-                                    setSelectedItem(e.target.id)}}> Szerkesztés</button></div>
+                                    console.log(products[e.target.id].nev)
+                                    setSelectedItem(e.target.id)}}> <svg width="25px" height="25px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                    <path fill="#000000" fill-rule="evenodd" d="M15.198 3.52a1.612 1.612 0 012.223 2.336L6.346 16.421l-2.854.375 1.17-3.272L15.197 3.521zm3.725-1.322a3.612 3.612 0 00-5.102-.128L3.11 12.238a1 1 0 00-.253.388l-1.8 5.037a1 1 0 001.072 1.328l4.8-.63a1 1 0 00.56-.267L18.8 7.304a3.612 3.612 0 00.122-5.106zM12 17a1 1 0 100 2h6a1 1 0 100-2h-6z"/>
+                                  </svg></button></div>
                                 <div><button id={index} className='maintenancebuttons' title='Törlés' onClick={(e)=>{
                                     if(window.confirm(`Biztosan törölni szeretnéd a ${products[e.target.id].nev} terméket?`)){
                                     removeItem(e.target.id,selectedCategory)}
-                                }}>Törlés</button></div>
+                                }}><svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg></button></div>
                             </div>
                         )}
+                        </div>
+
+
+                        
                     </div>
                 ):null))
             ):null)}
@@ -213,7 +258,7 @@ function Items({selectedCategory,login,currentUser, mode,}){
                 <Chat currentUser={currentUser} product={products[selectedItem]} handleToogleChatWindow={handleToogleChatWindow} />
             )}
         </div>
-        
+        </div>
     
     )
 }

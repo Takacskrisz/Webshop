@@ -8,7 +8,7 @@ import {v4} from "uuid";
 
 
 
-function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem,currentUser,handleToogleAddWindow, mode}){
+function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem,currentUser,handleToogleAddWindow, toogleAddWindow}){
 
     const [nev,setNev]=useState("");
     const [ar,setAr]=useState("");
@@ -121,8 +121,8 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
                 <div><button onClick={saveData}>Mentés</button></div>
                 <div>
                     <button onClick={()=>{
-                        handleEditItem(false)
-                        handleToogleAddWindow(false)
+                        if(editItem) handleEditItem(false)
+                        if(toogleAddWindow)handleToogleAddWindow(false)
                         
                         }}>
                             Mégsem

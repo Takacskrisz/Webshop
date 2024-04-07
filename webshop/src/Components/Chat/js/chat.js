@@ -26,14 +26,17 @@ function Chat({currentUser,product,handleToogleChatWindow}){
             createdAt: serverTimestamp(),
             sender: currentUser,
             receiver: targetUser,
-            product: product.Pid,
+            product: product.nev,
+            img:product.imgUrl,
         });}
         catch(error){
             console.log(error)
+            alert(error)
         }
-
+        
         setNewMessage("")
         handleToogleChatWindow(false)
+        alert("Üzenet elküldve!")
 
     }
     return(
@@ -46,12 +49,12 @@ function Chat({currentUser,product,handleToogleChatWindow}){
                     <p>Vedd fel a kapcsolatot {product.elado} felhasználóval:</p>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <input 
+                    <textarea 
                     placeholder="Írd ide az üzenetet"
                     onInput={(e)=>setNewMessage(e.target.value)}
                     value={newMessage}
                     className="chatbox1"/>
-                    <button type="submit">Küldés</button>
+                    <p><button type="submit">Küldés</button></p>
                 </form>
             </div>
         </div>

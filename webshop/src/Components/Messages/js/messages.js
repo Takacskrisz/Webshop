@@ -72,17 +72,20 @@ function Messages({currentUser, mode}){
     return(
 
         <div className="horizontal messagemenu">
-            <div className="Senders">
-                {[...chats].map((sender,index)=><div className="sender" key={index} id={sender} onClick={(e)=>{setSelectedSender(e.target.id)}}>{sender}</div>)}            
-            </div>
-            <div>
+            <div className="horizontal">
+                <div className="Senders">
+                    {[...chats].map((sender,index)=><div className="sender" key={index} id={sender} onClick={(e)=>{setSelectedSender(e.target.id);if (toogleChatRoom) {setToogleChatRoom(false);}} }>{sender}</div>)}            
+                </div>
                 <div>
-                {[...new Set(messages.filter(message => message.sender === selectedSender || message.receiver===selectedSender).map(filteredMessage => filteredMessage.product))].map((product, index) => (
-                <div key={index} id={product} onClick={(e) => {setSelectedProduct(e.target.id);setToogleChatRoom(true)}} className="productM">{product}</div>
-            ))}
+                    <div>
+                    {[...new Set(messages.filter(message => message.sender === selectedSender || message.receiver===selectedSender).map(filteredMessage => filteredMessage.product))].map((product, index) => (
+                        <div key={index} id={product} onClick={(e) => {setSelectedProduct(e.target.id);setToogleChatRoom(true)}} className="productM">{product}</div>
+                    ))}
+                    </div>
                 </div>
             </div>
-            {toogleChatRoom &&(<div className="vertical">
+            {toogleChatRoom &&(<div className="vertical chatContainM">
+                <div className="selectedCat">{selectedProduct}</div>
                 <div className="chatroom">
                     <div>
                     {messages.filter(message => (message.sender === selectedSender || message.receiver === selectedSender) && message.product === selectedProduct).sort((a, b) => a.createdAt - b.createdAt).map(filteredMessage => ( 
@@ -94,14 +97,14 @@ function Messages({currentUser, mode}){
                     </div>
                 </div>
                 <div>
-                    <form onSubmit={handleSubmit}>
-                        <input 
+                    <div className="horizontal chatboxcontainM">
+                       <div> <textarea 
                         placeholder="Írd ide az üzenetet"
                         onInput={(e)=>setNewMessage(e.target.value)}
                         value={newMessage}
-                        className="chatbox"/>
-                        <button type="submit" className="submitM">Küldés</button>
-                    </form>
+                        className="chatbox"/></div>
+                        <div><button onClick={handleSubmit} className="submitM">Küldés</button></div>
+                    </div>
 
 
                 </div>

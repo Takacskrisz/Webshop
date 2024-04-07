@@ -3,6 +3,8 @@
     margin-top: 0px;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: row;
 
 }
 
@@ -28,14 +30,14 @@
 }
 .productM{
     color:white;
-    font-size: 10px;
+    font-size: 25px;
     font-weight: bold;
     background-color: purple;
     border: 1px solid white;
     cursor: pointer;
 }
 .chatroom{
-    width: 500px;
+    width: 100%;
     height: 500px;
     overflow: scroll;
     display: flex;
@@ -43,7 +45,17 @@
     border: 10px solid white;
     background-color: lightblue;
     color:purple;
-    font-size:40px;
+    font-size:80px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.chatContainM{
+    width: 40%;
+    position: relative;
+}
+.chatboxcontainM{
+    width: 100%;
+    position: relative;
 }
 .right{
     text-align: right;
@@ -56,10 +68,21 @@
     color: rgb(31, 126, 22);
 }
 .chatbox{
-    width: 500px;
+    width: 450px;
+    height: 100px;
+    resize: none;
 
 }
 .submitM{
-    height: 100px;
-    width: 100px;
+    height: 109px;
+    width: 100x;
+}
+@media only screen and (max-width: 800px) {
+
+    .messagemenu{
+        flex-direction: column;
+    }
+    .chatContainM{
+        width: 100%;
+    }
 }

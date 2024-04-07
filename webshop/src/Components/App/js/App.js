@@ -65,7 +65,7 @@ function App() {
     <div  style={{ background: `url(${Background})`, backgroundSize: 'cover', minHeight: '100vh' }}>
     <Menu handleLogin={handleLogin} login={login} handleMode={handleMode} mode={mode} currentUser={currentUser} handleCurrentUser={handleCurrentUser}/>
     {Header()}
-    {mode=="buy" &&<Navbar handleSelectCategory={handleSelectCategory} login={login}/>}
+    {mode=="buy" &&<Navbar handleSelectCategory={handleSelectCategory} login={login} currentUser={currentUser}/>}
     <div>
     {mode=="register" && <Register handleLogin={handleLogin} handleMode={handleMode} handleCurrentUser={handleCurrentUser} />}
     {mode=="buy" &&<Items selectedCategory={selectedCategory} login={login} currentUser={currentUser} mode={mode} handleSelectCategory={handleSelectCategory}/>}
