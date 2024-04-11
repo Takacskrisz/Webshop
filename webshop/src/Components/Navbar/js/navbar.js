@@ -62,8 +62,8 @@ import "../css/navbar.css"
             {allItems.filter(item=>(item!="Egyéb")).map((item,index)=>(
             <div className='navbar' key={index} onClick={() => handleSelectCategory(item)}>{item}</div>
             ))}
-        <div className='navbar'><span  onClick={()=>handleSelectCategory("Egyéb")}>Egyéb</span></div>
-        <div className='navbar'><span  onClick={()=>handleSelectCategory("Minden")}>Minden</span></div>
+        <div className='navbar' onClick={()=>handleSelectCategory("Egyéb")}>Egyéb</div>
+        <div className='navbar'  onClick={()=>handleSelectCategory("Minden")}>Minden</div>
         {login && currentUser=="admin"&&(
              <div className='horizontal ' > 
                 <div > 
