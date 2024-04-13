@@ -20,7 +20,6 @@ import "../css/navbar.css"
     //UseEffect react hook minden stateváltozás-kor meghívja a fetchData() függvényt, frissítve a megjelenített adatokat.
     useEffect(()=>{
         fetchData()
-        console.log(allItems)
     },[])
     
 
@@ -31,8 +30,7 @@ import "../css/navbar.css"
     
     if(snapshot.exists()) {
         const data = snapshot.val();
-        const kategorias = Object.keys(data); 
-        console.log(kategorias); 
+        const kategorias = Object.keys(data);  
         setAllItems(kategorias);
     } else {
       console.log("error");

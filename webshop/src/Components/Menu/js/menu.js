@@ -42,7 +42,7 @@ function Menu({handleLogin, login, handleMode, mode, currentUser, handleCurrentU
                     <div className='menu' onClick={()=>handleMode("buy")}>Vásárol</div>
                     <div className='menu' onClick={()=>handleMode("sell")}>Elad</div>
                     <div className='menu'  onClick={()=>handleMode("messages")}>Üzenetek</div>
-                    {console.log(mode)}
+                   
             </>
                 )}
                     

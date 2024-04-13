@@ -1,30 +1,187 @@
 {
   "Kategoriak": {
-    "Kategoria3": {
-      "Termek5": {
-        "Ar": 600,
-        "Mennyiség": 100
+    "Bútorok": {
+      "Elefántos Lámpa|658ae69c-68e2-4201-a006-13fd1720fcaf": {
+        "Ar": 8500,
+        "Mennyiseg": 1,
+        "Pid": "Elefántos Lámpa|658ae69c-68e2-4201-a006-13fd1720fcaf",
+        "elado": "kisbela12",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2Ff4304f03-99b8-49d7-b6eb-a7956c9f65c1?alt=media&token=dd8816e8-b51f-4b1d-850d-d98497da7b4b",
+        "nev": "Elefántos Lámpa"
+      },
+      "Játszó szőnyeg|7ed053fc-b957-408f-b555-bd54c3d36f1a": {
+        "Ar": 6000,
+        "Mennyiseg": 1,
+        "Pid": "Játszó szőnyeg|7ed053fc-b957-408f-b555-bd54c3d36f1a",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2Fcc55cc1a-8378-45b0-a429-1f734d78267f?alt=media&token=bc9c89d8-55b1-4c89-a8a3-7b669086b0a2",
+        "nev": "Játszó szőnyeg"
+      },
+      "Kiságy|b861671b-2068-4db3-a727-c9ec7a0e9100": {
+        "Ar": 10000,
+        "Mennyiseg": 1,
+        "Pid": "Kiságy|b861671b-2068-4db3-a727-c9ec7a0e9100",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F5c0d5bd6-54fb-4493-896b-8533708f9c32?alt=media&token=7792d47f-0119-4215-992b-fe181658854f",
+        "nev": "Kiságy"
+      },
+      "Pelenkázó|2679423c-5ee5-4b04-9a3f-e9d36f5a1650": {
+        "Ar": 14900,
+        "Mennyiseg": 1,
+        "Pid": "Pelenkázó|2679423c-5ee5-4b04-9a3f-e9d36f5a1650",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F930772e5-31ba-4326-b0d6-9b34c17d50eb?alt=media&token=dca39145-9b16-4e49-82dc-6069fc76128c",
+        "nev": "Pelenkázó"
+      },
+      "Versenyautós Ágy|e7221f4a-1295-4863-81f4-e226aee97f4d": {
+        "Ar": 115000,
+        "Mennyiseg": 1,
+        "Pid": "Versenyautós Ágy|e7221f4a-1295-4863-81f4-e226aee97f4d",
+        "elado": "nagyanna88",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2Fcbf461b8-d061-4289-850d-08d89d246cc2?alt=media&token=bf815244-3fbb-4fcf-ad6f-cd3fab13058e",
+        "nev": "Versenyautós Ágy"
+      },
+      "item": true
+    },
+    "Cipők": {
+      "Babacipő|256e2d99-2e90-482b-b692-a8b6d63cd52a": {
+        "Ar": 1400,
+        "Mennyiseg": 1,
+        "Pid": "Babacipő|256e2d99-2e90-482b-b692-a8b6d63cd52a",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F8f167d38-225a-41af-a1ff-d64cd69cc8bc?alt=media&token=8639dec0-5033-46b4-934e-8828c5a603d7",
+        "nev": "Babacipő"
+      },
+      "Pink cipő|95ab00b2-3f4b-4551-a35a-b5d5014e2d1a": {
+        "Ar": 3000,
+        "Mennyiseg": 1,
+        "Pid": "Pink cipő|95ab00b2-3f4b-4551-a35a-b5d5014e2d1a",
+        "elado": "elado100",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F2dd16e84-28ba-4150-848f-7fbd5c997802?alt=media&token=a0360b5c-cf9c-4fb6-aff3-3921d2094e46",
+        "nev": "Pink cipő"
+      },
+      "Virágos babacipő|095d3e05-56c0-4c40-82bf-d3ffeefd05e9": {
+        "Ar": 2500,
+        "Mennyiseg": 1,
+        "Pid": "Virágos babacipő|095d3e05-56c0-4c40-82bf-d3ffeefd05e9",
+        "elado": "kisbela12",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F4c6eaeb5-2485-4f3a-90e3-c7bf6b0d57f2?alt=media&token=e7fd909d-8775-44ec-89a2-5622a9b14c6e",
+        "nev": "Virágos babacipő"
+      },
+      "item": true
+    },
+    "Egyéb": {
+      "Babaülés|9dc0fe07-d68e-4aa2-93ac-e39410b8f709": {
+        "Ar": 10000,
+        "Mennyiseg": 1,
+        "Pid": "Babaülés|9dc0fe07-d68e-4aa2-93ac-e39410b8f709",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F43b7e99b-6ec3-4375-a83f-17755dbc21a1?alt=media&token=c4aeb5a9-63e3-4e8d-a8a5-92b8beffcc61",
+        "nev": "Babaülés"
+      },
+      "Márkás Babakocsi|431f2796-ac7d-44cd-b799-ad28a696d07c": {
+        "Ar": 250000,
+        "Mennyiseg": 1,
+        "Pid": "Márkás Babakocsi|431f2796-ac7d-44cd-b799-ad28a696d07c",
+        "elado": "nagyanna88",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2Fa310264e-845f-496e-a5e2-601417cfe929?alt=media&token=a4d29c31-54cc-4054-8130-2dbe895bca94",
+        "nev": "Márkás Babakocsi"
+      },
+      "item": true
+    },
+    "Játékok": {
+      "Csörgő|acffb235-ba9f-43cd-82d1-970e598bffb5": {
+        "Ar": 3500,
+        "Mennyiseg": 1,
+        "Pid": "Csörgő|acffb235-ba9f-43cd-82d1-970e598bffb5",
+        "elado": "kisbela12",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F41a4d714-662e-4781-b111-3999d22bad04?alt=media&token=397f2035-554e-4263-a204-79518ef493bf",
+        "nev": "Csörgő"
+      },
+      "Elefánt Zongora|7cb19895-1eb6-4319-9c57-ee7e1789cf04": {
+        "Ar": 8000,
+        "Mennyiseg": 1,
+        "Pid": "Elefánt Zongora|7cb19895-1eb6-4319-9c57-ee7e1789cf04",
+        "elado": "elado100",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F11500351-989d-477f-94e1-a0085b1c46c5?alt=media&token=05aa3def-0ef5-44b5-adb1-7f0ecf05e63f",
+        "nev": "Elefánt Zongora"
+      },
+      "Játék Baba|897d5d23-609f-4cdd-8d7b-03cb534ef437": {
+        "Ar": 3500,
+        "Mennyiseg": 1,
+        "Pid": "Játék Baba|897d5d23-609f-4cdd-8d7b-03cb534ef437",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2Fbf1d8c5b-0eaf-4956-b655-907f2c5f38a6?alt=media&token=2c94b061-eb1f-4b81-91e3-296f08808ff1",
+        "nev": "Játék Baba"
+      },
+      "Játékautó|6d24efe9-54f7-46ae-8457-00432d6053a5": {
+        "Ar": 2700,
+        "Mennyiseg": 4,
+        "Pid": "Játékautó|6d24efe9-54f7-46ae-8457-00432d6053a5",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F3345b9da-388f-4782-a5af-8bb31cd17aff?alt=media&token=41492d48-5c2c-4415-b8be-5b291f9a3a18",
+        "nev": "Játékautó"
+      },
+      "Plüssállat|1316059d-d696-4dca-901c-15da12035e8d": {
+        "Ar": 500,
+        "Mennyiseg": 1,
+        "Pid": "Plüssállat|1316059d-d696-4dca-901c-15da12035e8d",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2Fce16d6b0-dda0-48ce-8153-4df6c24f342f?alt=media&token=94c28107-d85f-4229-bf59-d0b49c58f3f9",
+        "nev": "Plüssállat"
+      },
+      "Sárga kabát|3464c006-5e36-4dae-8cac-ab6403fa2f27": {
+        "Ar": 5500,
+        "Mennyiseg": 1,
+        "Pid": "Sárga kabát|3464c006-5e36-4dae-8cac-ab6403fa2f27",
+        "elado": "nagyanna88",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2Fe48155f1-b04a-4e3c-bdec-d8d046c1b368?alt=media&token=770480bd-2525-46b0-8aa6-f643894f6826",
+        "nev": "Sárga kabát"
+      },
+      "item": true,
+      "jatek|ab60ea7e-50b1-4b3f-aa1e-82a2db809796": {
+        "Ar": 1200,
+        "Mennyiseg": 12,
+        "Pid": "jatek|ab60ea7e-50b1-4b3f-aa1e-82a2db809796",
+        "elado": "Mintaember",
+        "imgUrl": "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg",
+        "nev": "jatek"
+      },
+      "valami|136377eb-1df3-4ecc-9599-874c7b15fd95": {
+        "Ar": 1000,
+        "Mennyiseg": 12,
+        "Pid": "valami|136377eb-1df3-4ecc-9599-874c7b15fd95",
+        "elado": "Mintaember",
+        "imgUrl": "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg",
+        "nev": "valami"
       }
     },
-    "Kategoria1": {
-      "Termek1": {
-        "Mennyiseg": 5,
-        "Ar": 1000
+    "Ruhák": {
+      "Baba ruhaszett|98e167e0-13fb-4d2c-a57d-278cfee4aa92": {
+        "Ar": 4000,
+        "Mennyiseg": 1,
+        "Pid": "Baba ruhaszett|98e167e0-13fb-4d2c-a57d-278cfee4aa92",
+        "elado": "elado100",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F5ca0b56f-6be3-425f-a74f-987d7680a616?alt=media&token=a247977d-b212-4ac8-9c84-fee1ca195f52",
+        "nev": "Baba ruhaszett"
       },
-      "Termek2": {
-        "Mennyiseg": 10,
-        "Ar": 1500
-      }
-    },
-    "Kategoria2": {
-      "Termek3": {
-        "Mennyiseg": 15,
-        "Ar": 2500
+      "Rugdalózó Pink|51966357-1533-4b4d-b679-f07b14854fc0": {
+        "Ar": 3900,
+        "Mennyiseg": 1,
+        "Pid": "Rugdalózó Pink|51966357-1533-4b4d-b679-f07b14854fc0",
+        "elado": "admin",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F9a8fd474-c694-4d92-a65f-4b0642b7ec6f?alt=media&token=e163ee60-ce68-49bf-b1b5-bc3fb7ae7fd5",
+        "nev": "Rugdalózó Pink"
       },
-      "Termek4": {
-        "Mennyiseg": 10,
-        "Ar": 2000
-      }
+      "Sárga ruha|f9b1bbf0-c509-426e-8d9e-7d4e36c8ccd4": {
+        "Ar": 3500,
+        "Mennyiseg": 1,
+        "Pid": "Sárga ruha|f9b1bbf0-c509-426e-8d9e-7d4e36c8ccd4",
+        "elado": "elado100",
+        "imgUrl": "https://firebasestorage.googleapis.com/v0/b/webshop-463af.appspot.com/o/kepek%2F24cd5dc2-24ea-4608-82d6-46a062a67958?alt=media&token=91ef1dbd-dccf-452d-9723-b9bbf353842c",
+        "nev": "Sárga ruha"
+      },
+      "item": true
     }
   }
 }

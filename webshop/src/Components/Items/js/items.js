@@ -167,8 +167,8 @@ function Items({selectedCategory,login,currentUser, mode,}){
                         <div><img className='imgI' src={item.imgUrl ? item.imgUrl : "https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg"} alt={item.nev}/></div>
                         <div key={index} className="vertical ">
                             <div className='product'>{item.nev}</div>
+                            <div className='sellerI'>Árulja:{item.elado}</div>
                             <div>{item.Ar} Ft</div>
-                            <div>Árulja:{item.elado}</div>
                             <div><button className='messagebuttonI' id={index} onClick={(e)=>{
                                 setSelectedItem(e.target.id)
                                 setToogleChatWindow(true)

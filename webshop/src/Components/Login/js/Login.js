@@ -53,7 +53,9 @@ function Login({handleLogin, toggleLoginWindow, handleMode, handleCurrentUser}){
                         toggleLoginWindow()
                     }else{
                         handleLogin(false)
-                        alert("Hibás adatok! "+ userId + userPwd)
+                        alert("Hibás adatok!")
+                        setUserId("")
+                        setUserPwd("")
                     }
                     
                 }).catch((error) => {

@@ -30,6 +30,11 @@ app.post('/api', async (request, response) => {
 
         response.send(valid)
     }
+    if (request.body.action && request.body.action === 'checkE') {
+        const valid = await Service.checkEmail(request.body.email)
+
+        response.send(valid)
+    }
 })
 
 

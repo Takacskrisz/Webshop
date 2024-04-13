@@ -17,8 +17,7 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
     const [imgUrl, setImgUrl] = useState("https://st.depositphotos.com/1006899/4187/i/450/depositphotos_41878603-stock-photo-global-delivery.jpg");
     const [pid,setPid]=useState(`${nev}|${v4()}`);
     const [elado,setElado]=useState(currentUser);
-    const [category,setCategory]=useState(selectedCategory)
-    console.log(currentUser)
+    const [category,setCategory]=useState(selectedCategory);
 
     const fileInputRef=useRef(null)
   
@@ -57,7 +56,6 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
     const saveData = async () => {
 
         const db = getDatabase(app);
-        console.log(v4())
         const imgRef=ref_storage(imageDb,`kepek/${v4()}`)
         let newImgUrl= imgUrl
         
