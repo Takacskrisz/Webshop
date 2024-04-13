@@ -68,8 +68,8 @@ function App() {
     {mode=="buy" &&<Navbar handleSelectCategory={handleSelectCategory} login={login} currentUser={currentUser}/>}
     <div>
     {mode=="register" && <Register handleLogin={handleLogin} handleMode={handleMode} handleCurrentUser={handleCurrentUser} />}
-    {mode=="buy" &&<Items selectedCategory={selectedCategory} login={login} currentUser={currentUser} mode={mode} handleSelectCategory={handleSelectCategory}/>}
-    {mode=="sell" &&<Items selectedCategory={selectedCategory} login={login} currentUser={currentUser} mode={mode} handleSelectCategory={handleSelectCategory}/>}
+    {mode=="buy" &&<Items selectedCategory={selectedCategory} login={login} currentUser={currentUser} mode={mode} handleMode={handleMode} handleSelectCategory={handleSelectCategory}/>}
+    {mode=="sell" &&<Items selectedCategory={selectedCategory} login={login} currentUser={currentUser} mode={mode} handleMode={handleMode} handleSelectCategory={handleSelectCategory}/>}
     {mode=="messages"&& <Messages currentUser={currentUser} mode={mode}/>}
     </div>
     </div>
