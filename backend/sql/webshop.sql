@@ -55,11 +55,15 @@ INSERT INTO `logindata` (`Username`, `PWD`, `Uid`, `email`) VALUES
 --
 -- A tábla indexei `logindata`
 --
+<<<<<<< HEAD
 ALTER TABLE `logindata`
   ADD PRIMARY KEY (`email`),
   ADD UNIQUE KEY `Username` (`Username`),
   ADD KEY `Uid` (`Uid`);
 COMMIT;
+=======
+ALTER TABLE `logindata` ADD PRIMARY KEY(`email`);
+>>>>>>> 4f158fdd45e1bb1af0ccdfc2de95480ecded98fa
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
