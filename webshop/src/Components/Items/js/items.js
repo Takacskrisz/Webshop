@@ -198,16 +198,17 @@ function Items({selectedCategory,login,currentUser, mode, handleMode}){
                     </div>
                 ):null))
             ) : (
-                <Homepage handleMode={handleMode}/>
+                <Homepage handleMode={handleMode} login={login}/>
                 
                 )
 
             )}
-          
+           {/*Csak a jelenlegi eladó termékei jelennek meg, ha a mode = sell            */}
             {!editItem && mode=="sell" &&(
+                /*Lekérünk minden adatot  */
                 fetchAllData(),
                 products.length > 0 ? (
-                
+                /*kiszűrjük a szükséges termékeket, majd megjelenítjük őket  */
                 products.filter(product=>(product.elado==currentUser)).map((item, index) => (
                 item.nev && item.Ar && item.Mennyiseg!=null?(
                     
@@ -247,10 +248,11 @@ function Items({selectedCategory,login,currentUser, mode, handleMode}){
                     </div>
                 ):null))
             ):null)}
+            {/*Ha az editItem igaz, akkor megjelenítjük a Maintenance komponenst  */}
             {editItem && (
             <div>
                 <p>Szerkesztés</p>
-                <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} product={products[selectedItem]} handleEditItem={handleEditItem} editItem={editItem} currentUser={currentUser}/>
+                <Maintenance selectedCategory={selectedCategory } fetchData={fetchData} product={products.filter(product=>(product.elado==currentUser))[selectedItem]} handleEditItem={handleEditItem} editItem={editItem} currentUser={currentUser}/>
             </div>
             
             )}

@@ -70,10 +70,53 @@ function Register({handleLogin,handleMode,handleCurrentUser}){
             })
         }) 
     }
+
+    function checkUsername(){
+
+        // Promise objektum visszaadása
+  
+        return new Promise((resolve, reject) => {
+              
+            // Adatok előkészítése
+
+            const data = JSON.stringify({ 
+                action:         'checkU', 
+                username:          newUserName
+            })
+        
+            // POST kérés elküldése
+
+            fetch('/api', { 
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Content-Length': data.length
+                },
+                body: data
+            }).then(response => response.json()).then((data) => {
+
+                // Eredmény visszaadása
+
+                resolve(data)
+                if(data){
+                    alert("Ez a felhasználónév már regisztrálva van, adjon meg másikat vagy jelentkezzen be.")
+                    return false
+                } else return true
+               
+                
+            }).catch((error) => {
+
+                // Hiba történt
+
+                reject(error)
+                console.log(error)
+            })
+        }) 
+    }
     /**registerAttempt függvény elköldi az új felhasználó adatait az adatbázisba */
     async function registerAttempt(){
 
-        if(! await checkEmail()){
+        if((! await checkEmail()) && (!await checkUsername())){
 
         
         // Promise objektum visszaadása
@@ -111,7 +154,8 @@ function Register({handleLogin,handleMode,handleCurrentUser}){
                   
               }).catch((error) => {
   
-                  // Hiba történt
+                    //Hiba
+                  alert("Hiba történt")
   
                   reject(error)
               })

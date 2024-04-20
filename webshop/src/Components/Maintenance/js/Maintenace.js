@@ -104,7 +104,7 @@ function Maintenance({selectedCategory,fetchData,product,handleEditItem,editItem
             </div>               
             <div className="vertical" >
                 <div>Kategória:
-                    <select id="categorySelect" value={selectedCategory} onChange={(e) => setCategory(e.target.value)}>
+                    <select id="categorySelect" disabled={editItem} title={editItem ? "Kategóriát nem lehet változtatni" : null} value={selectedCategory} onChange={(e) => setCategory(e.target.value)}>
                     <option value="">Válassz kategóriát...</option>
                     <option value="Bútorok">Bútorok</option>
                     <option value="Cipők">Cipők</option>

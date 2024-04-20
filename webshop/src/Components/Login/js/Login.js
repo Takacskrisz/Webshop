@@ -50,6 +50,7 @@ function Login({handleLogin, toggleLoginWindow, handleMode, handleCurrentUser}){
                     if(data){
                         handleCurrentUser(userId)
                         handleLogin(true)
+                        handleMode("buy")
                         toggleLoginWindow()
                     }else{
                         handleLogin(false)

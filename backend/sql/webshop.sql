@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1:3307
--- Létrehozás ideje: 2024. Ápr 13. 16:23
+-- Létrehozás ideje: 2024. Ápr 20. 09:02
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -57,6 +57,8 @@ INSERT INTO `logindata` (`Username`, `PWD`, `Uid`, `email`) VALUES
 --
 ALTER TABLE `logindata`
   ADD PRIMARY KEY (`email`),
+  ADD UNIQUE KEY `Username` (`Username`),
+  ADD KEY `Uid` (`Uid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

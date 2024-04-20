@@ -35,6 +35,11 @@ app.post('/api', async (request, response) => {
 
         response.send(valid)
     }
+    if (request.body.action && request.body.action === 'checkU') {
+        const valid = await Service.checkUsername(request.body.username)
+
+        response.send(valid)
+    }
 })
 
 

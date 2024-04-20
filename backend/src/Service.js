@@ -115,4 +115,39 @@ module.exports= class Service {
             return false
         }
     }
+
+    /**
+     * Ellenőrzi a megadott felhasználó létezését az adatbázisban
+     * 
+     * @param {String}  username   felhasználó neve
+     * @returns {Promise}   promise objektum
+     */
+    static async checkUsername(username) {
+
+        // Inicializálás
+
+        const db = new Database(
+            config.db.host,
+            config.db.port,
+            config.db.user,
+            config.db.password,
+            config.db.dbname
+        )
+
+        // Lekérdezés
+
+        const result = await db.run(`
+                        SELECT Username
+                        FROM logindata
+                        WHERE Username = '${username}'
+        `)
+        
+        // Lekérdezés ellenőrzése
+
+        if (result && result.length ===1 ) {
+            return true
+        } else {
+            return false
+        }
+    }
 }

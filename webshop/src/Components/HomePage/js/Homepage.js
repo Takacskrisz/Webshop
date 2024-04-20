@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "../css/homepage.css"
 
-function Homepage({handleMode}){
+function Homepage({handleMode, login}){
 
     const [isOnline, setIsOnline] = React.useState(navigator.onLine);
 
@@ -24,13 +24,18 @@ function Homepage({handleMode}){
             {isOnline ? (
             <>
                 <div>Válassz egy kategóriát!</div>
-                <div>Vásárláshoz vagy eladáshoz jelentkezz be!</div>
-                <div>Ha nincs felhasználói fiókod, regisztrálj be 
-                     <span  className="regClick"
+                {!login ?
+                 (<>
+                 <div>Vásárláshoz vagy eladáshoz jelentkezz be!</div>
+                 <div>Ha nincs felhasználói fiókod, regisztrálj be
+                        <span className="regClick"
                             title="Kattints ide a regisztrációhoz"
-                            onClick={()=>handleMode('register')}>itt.
-                     </span>
+                            onClick={() => handleMode('register')}> itt.
+                        </span>
                 </div>
+                </>)
+                :(<div>Eladáshoz kattints az Elad gombra.</div>)}
+                
             </>
             ) : (
                 <div>Nincs internetkapcsolat</div>

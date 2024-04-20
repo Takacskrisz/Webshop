@@ -57,9 +57,14 @@ function App() {
    */
 
   
+  /** HandleMode egy függvény amit propként használva beállíthatjuk a mode értékét más komponensekben
+   * @param {string} newMode a kiválaszott mode értéke, buy,sell, register, messages
+   * @returns {state} mode
+   */
   const handleMode=(newMode)=>{
     setMode(newMode)
   }
+
   //A return alatt szereplő html tagek, a saját komponensekkel együtt mind le lesznek a root div-ben renderelve az App komponensen keresztül
   return (
     <div  style={{ background: `url(${Background})`, backgroundSize: 'cover', minHeight: '100vh' }}>
